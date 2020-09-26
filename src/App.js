@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import './app.scss'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Checkout from './client_views/checkout';
 import Eventos from './client_views/eventos';
 import Home from './client_views/home';

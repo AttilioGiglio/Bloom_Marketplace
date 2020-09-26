@@ -17,18 +17,18 @@ const MisionVision = () => {
                 </div>
             </div>
             <div className='row  d-flex justify-content-center text-center'>
-                <div className='col-4'>
-                    <FcCloseUpMode size={150} />
+                <div className='card col-4' style={{background:'transparent', border:'none'}}>
+                    <FcCloseUpMode size={150} className='align-self-center'  />
                     <h3>ALTA CALIDAD</h3>
                     <p>Solo trabajamos con los mas talentosos y apasionados artesanos. Y a nosotros nos apasioan apoyar sus familias y plantas.</p>
                 </div>
-                <div className='col-4'>
-                    <FcShipped size={150} style={{ color: 'blue' }} />
+                <div className='card col-4 ' style={{background:'transparent', border:'none'}}>
+                    <FcShipped size={150} style={{ color: 'blue' }} className='align-self-center'  />
                     <h3>DESPACHO A DOMICILIO</h3>
                     <p>Nuestros envios son preparados a mano, por profesionales. Con alto foco de mantener intacta y fresca sus ordenes. </p>
                 </div>
-                <div className='col-4'>
-                    <GiTreeGrowth size={150} style={{ color: 'green' }} />
+                <div className='card col-4' style={{background:'transparent', border:'none'}}>
+                    <GiTreeGrowth size={150} style={{ color: 'green' }} className='align-self-center'  />
                     <h3>REFORESTACION</h3>
                     <p>Destinamos el 10% de nuestras utilidades a esta reforestar nuestro pais querido. Desde Arica a Punta Arenas.</p>
                 </div>

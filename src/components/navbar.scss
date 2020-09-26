@@ -1,7 +1,12 @@
-span{
-    position: absolute;
+a{
+    color: #224229 !important;
+    font-weight: bold;
+    font-size: 1.7rem
 }
 
-h4:hover{
-    color: green;
+.icon{
+    padding-bottom: 7px;
+}
+button.navbar-toggler{
+    border:none;
 }
