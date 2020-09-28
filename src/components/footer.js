@@ -19,7 +19,7 @@ const Footer = () => {
                     <p style={{ margin: '0' }}>que compran y venden</p>
                     <p style={{ margin: '0' }}>flores y plantas en Chile.
                     <p style={{ margin: '0' }}>Usando tecnología simple</p> 
-                    <p style={{ margin: '0' }}>junto con la guía y nuestro</p>
+                    <p style={{ margin: '0' }}>junto con nuestra guía y</p>
                     <p style={{ margin: '0' }}></p>soporte diario</p>
                 </div>
                 <div className='col-2 mx-3'>
