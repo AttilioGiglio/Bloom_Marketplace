@@ -7,19 +7,19 @@ import { FiShoppingCart } from 'react-icons/fi';
 const NavBar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light py-3 px-5">
-            <Link to='/' style={{ textDecoration: 'none' }}> <a className="logo navbar-brand d-flex">
-            <RiPlantLine size={70} style={{ color: "#224229" }} /> <div style={{marginTop:'2px'}}><span style={{ color: "#224229", fontSize: '50px', fontWeight: 'bold' }}>BLOOM!</span></div>
+            <Link to='/' style={{ textDecoration: 'none' }}> <a className="logo navbar-brand d-flex mr-5">
+                <RiPlantLine size={70} style={{ color: "#224229" }} /> <div style={{ marginTop: '2px' }}><span style={{ color: "#224229", fontSize: '50px', fontWeight: 'bold' }}>BLOOM!</span></div>
             </a>
             </Link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
                 <ul className="navbar-nav ml-auto pt-3 mb-1">
-                    <li className="nav-item mr-5">
+                    <li className="nav-item mr-3">
                         <Link to='/' style={{ textDecoration: 'none' }}><a className="nav-link active ">HOME</a></Link>
                     </li>
-                    <li className="nav-item dropdown mr-5">
+                    <li className="nav-item dropdown mr-3">
                         <a className="nav-link dropdown-toggle active" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             PRODUCTOS
                         </a>
@@ -29,7 +29,7 @@ const NavBar = () => {
                             <Link to='/outdoor' style={{ textDecoration: 'none' }}><a className="dropdown-item">PLANTAS OUTDOOR</a></Link>
                         </div>
                     </li>
-                    <li className="nav-item dropdown mr-5">
+                    <li className="nav-item dropdown mr-3">
                         <a className="nav-link dropdown-toggle active" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             BLOG
                         </a>
@@ -39,14 +39,14 @@ const NavBar = () => {
                             <Link to='/eventos' style={{ textDecoration: 'none' }}><a className="dropdown-item">EVENTOS</a></Link>
                         </div>
                     </li>
-                    <li className="nav-item">
-                        <Link to='/signup' style={{ textDecoration: 'none' }}><a className="nav-link active">SIGN UP</a></Link>
+                    <li className="nav-item mr-3">
+                        <Link to='/business' mr-5style={{ textDecoration: 'none' }}><a className="nav-link active">VENDE CON BLOOM!</a></Link>
                     </li>
-                    <li className="nav-item">
-                    <a className='nav-link active'>/</a>
+                    <li className="nav-item mr-3">
+                        <Link to='/signup_client' style={{ textDecoration: 'none' }}><a className="nav-link active">SIGN UP</a></Link>
                     </li>
-                    <li className="nav-item mr-5">
-                        <Link to='/login' style={{ textDecoration: 'none' }}><a className="nav-link active">LOGIN</a></Link>
+                    <li className="nav-item mr-3">
+                        <Link to='/login_client' style={{ textDecoration: 'none' }}><a className="nav-link active">LOGIN</a></Link>
                     </li>
                     <li className="nav-item">
                         <Link to='/checkout'><a className="nav-link active"><FiShoppingCart size={40} style={{ color: "#224229" }} className='icon' /></a></Link>

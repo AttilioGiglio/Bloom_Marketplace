@@ -6,7 +6,7 @@ import MisionVision from '../components/mision-vision';
 import ProductosCarrusel from '../components/productos-carrusel';
 import Footer from '../components/footer';
 
-const Home = () => {
+const HomeClient = () => {
     return (
         <div>
             <NavBar />
@@ -19,4 +19,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default HomeClient
