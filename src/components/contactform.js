@@ -28,23 +28,23 @@ const ContactForm = () => {
 
     return (
     <form onSubmit={submitForm}>
-  <div class="form-group">
+  <div className="form-group">
     <h4 className='pb-1'>Contactanos</h4> 
     <SiMinutemailer/> <label>Nombre:</label>
     <input 
     type="text" 
     value={name}
-    class="form-control" 
+    className="form-control" 
     placeholder="Ingresa tu nombre"
     onChange = {(e) => setName(e.target.value)}
     />
   </div>
-  <div class="form-group">
+  <div className="form-group">
   <SiMinutemailer/> <label>Correo:</label>
     <input 
     value={email}
     type="email" 
-    class="form-control" 
+    className="form-control" 
     placeholder="Ingresa tu correo" 
     onChange = {(e) => setEmail(e.target.value)}
     />
@@ -52,7 +52,7 @@ const ContactForm = () => {
   <button 
   type="submit" 
   value={message}
-  class="btn btn-primary" 
+  className="btn btn-primary" 
   style={{background:"#fcf9f3", borderColor: '#224229', color:'#224229'}}
   onChange = {(e) => setMessage(e.target.value)}
   >Enviar</button>

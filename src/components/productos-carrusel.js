@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './productos-carrusel.scss'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -80,7 +80,7 @@ const ProductosCarrusel = () => {
                     return (
                         <div className='col'>
                             <div className='card'>
-                                <img width='100%' src={photo.url} />
+                                <img width='100%' src={photo.url} alt='' />
                             </div>
                         </div>
                     )

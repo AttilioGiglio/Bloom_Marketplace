@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {} from 'react';
 import './mision-vision.scss';
 import { FcCloseUpMode } from 'react-icons/fc';
 import { GiTreeGrowth } from 'react-icons/gi';

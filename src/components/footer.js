@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
 import './footer.scss';
 import ContactForm from './contactform';
