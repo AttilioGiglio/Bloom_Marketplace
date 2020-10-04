@@ -31,7 +31,7 @@ const ListaCards = () => {
                         (products!= null && products.length > 0)
                             ?
                             products.map((item, index) => (
-                                <Card key={item.id} common_name={item.common_name} img={item.image_url}/>
+                                <Card key={item.id} common_name={item.common_name} image_url={item.image_url}/>
                             ))
                             :
                             null

@@ -2,6 +2,7 @@ import React from 'react';
 import './card.scss'
 
 const Card = ({common_name, image_url}) => {
+    console.log(image_url)
     return (
         <>
         <div className='d-inline-flex m-5'> 
