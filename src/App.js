@@ -16,6 +16,7 @@ import Summary from './business_views/account/summary';
 import AddProduct from './business_views/account/add_product';
 import ProductsList from './business_views/account/products_list';
 import Profile from './business_views/account/profile';
+import OrdersList from './business_views/account/orders_list';
 
 
 // Agregar efecto de cambio de color a verde en navbar cuando se hace scroll
@@ -41,6 +42,7 @@ const App = () => {
                 <Route exact path='/signup_business' component={SignupBusiness} />
                 <Route exact path='/summary_business' component={Summary} />
                 <Route exact path='/add_product_business' component={AddProduct} />
+                <Route exact path='/orders_list_business' component={OrdersList} />
                 <Route exact path='/products_list_business' component={ProductsList} />
                 <Route exact path='/profile_business' component={Profile} />
             </Switch>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
 import { MdControlPoint } from 'react-icons/md';
-import { HiOutlineClipboardList } from 'react-icons/hi';
+import { RiFileList2Line } from 'react-icons/ri';
 import { AiOutlineBarChart } from 'react-icons/ai';
 import { BiCog } from 'react-icons/bi';
 
@@ -17,8 +17,8 @@ const Sidebar = () => {
                     <div class="menu">
                         <Link to={'/summary_business'} style={{ textDecoration: 'none' }} class="d-block text-light p-3 border-0"><i class="icon ion-md-apps lead mr-2"></i>
                             <AiOutlineBarChart className='mb-1' style={{ fontSize: '26px' }} /> Resumen </Link>
-                        <Link to={'/products_list_business'} style={{ textDecoration: 'none' }} class="d-block text-light p-3 border-0"><i class="icon ion-md-apps lead mr-2"></i>
-                            <HiOutlineClipboardList className='mb-1' /> Lista de Productos</Link>
+                        <Link to={'/orders_list_business'} style={{ textDecoration: 'none' }} class="d-block text-light p-3 border-0"><i class="icon ion-md-apps lead mr-2"></i>
+                            <RiFileList2Line className='mb-1' /> Lista de Ordenes</Link>
                         <Link to={'/add_product_business'} style={{ textDecoration: 'none' }} class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>
                             <MdControlPoint className='mb-1' /> Agregar Producto</Link>
                         <Link to={'/profile_business'} style={{ textDecoration: 'none' }} class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>

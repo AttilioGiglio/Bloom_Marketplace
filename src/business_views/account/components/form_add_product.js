@@ -1,48 +1,36 @@
-import React from 'react'
+import React from 'react';
+import { IoMdAddCircleOutline } from 'react-icons/io'
 
 const FormAddProduct = () => {
     return (
-        <form>
+        <form className='card p-4' style={{ margin: '50px auto 0', width: '80%', minHeight: '50vh' }}>
             <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="validationDefault01">First name</label>
+                <div class="col-md-3 mb-3">
+                    <label for="validationDefault01">Categoria</label>
                     <input type="text" class="form-control" id="validationDefault01" value="Mark" required />
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="validationDefault02">Last name</label>
+                <div class="col-md-3 mb-3">
+                    <label for="validationDefault01">Nombre Producto</label>
+                    <input type="text" class="form-control" id="validationDefault02" value="Otto" required />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationDefault01">Cantidad</label>
+                    <input type="text" class="form-control" id="validationDefault02" value="Otto" required />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationDefault01">Precio</label>
                     <input type="text" class="form-control" id="validationDefault02" value="Otto" required />
                 </div>
             </div>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="validationDefault03">City</label>
-                    <input type="text" class="form-control" id="validationDefault03" required />
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationDefault04">State</label>
-                    <select class="custom-select" id="validationDefault04" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationDefault05">Zip</label>
-                    <input type="text" class="form-control" id="validationDefault05" required />
-                </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Decripción</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required />
-                    <label class="form-check-label" for="invalidCheck2">
-                        Agree to terms and conditions
-            </label>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Example file input</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1" required />
-                </div>
+                <label for="exampleFormControlFile1">Imagen de tu producto</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" required />
             </div>
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button class="btn mt-3" style={{ width: '15%', background: '#479A79', border: 'solid 1px #479A79', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '20px' }} type="submit">Agregar <IoMdAddCircleOutline style={{ color: '#fcf9f3', fontSize: '20px' }} /></button>
         </form>
     )
 }
