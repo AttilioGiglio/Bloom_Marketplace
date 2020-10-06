@@ -1,12 +1,12 @@
 import React from 'react';
-import './navbar.scss'
+import './navbar_client.scss'
 import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
 import { FiShoppingCart } from 'react-icons/fi';
 
 const NavBar = () => {
     return (
-        <div className='navBar'>
+        <div className='navBar client'>
             <nav className="navbar navbar-expand-lg navbar-light py-2 px-5">
                 <Link to='/' style={{ textDecoration: 'none' }} className="nav-link active logo navbar-brand d-flex mr-5 d-flex align-items-center">
                     <RiPlantLine size={60} style={{ color: "#fcf9f3" }} /> <div className='mt-2'><span style={{ color: "#fcf9f3", fontSize: '45px', fontWeight: 'bold' }}>BLOOM!</span></div>
@@ -45,7 +45,7 @@ const NavBar = () => {
                             <Link to='/login_client' className="nav-link active" style={{ textDecoration: 'none' }}>LOGIN</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/checkout' className="nav-link active"><FiShoppingCart size={40} style={{ color: "#fcf9f3" }} className='icon' /></Link>
+                            <Link to='/checkout_step_one' className="nav-link active"><FiShoppingCart size={40} style={{ color: "#fcf9f3" }} className='icon' /></Link>
                         </li>
                     </ul>
                 </div>

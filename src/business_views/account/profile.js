@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Checkout = () => {
+const Profile = () => {
     return (
         <div>
-            
+            <h1>Profile</h1>
         </div>
     )
 }
 
-export default Checkout
+export default Profile

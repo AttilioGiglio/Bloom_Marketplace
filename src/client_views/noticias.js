@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import NavBar from '../components/navbar';
+import NavBar from '../components/navbar_client';
 
 const Noticias = () => {
     return (

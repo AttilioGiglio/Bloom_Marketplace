@@ -1,12 +1,11 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
-import './footer.scss';
+import './footer_client.scss';
 import ContactForm from './contactform';
 
 const Footer = () => {
     return (
-        <div className='footer py-5'>
+        <div className='footer_client py-5'>
             <div className='row pb-1 d-flex justify-content-center align-items-center '>
                 <div className='col-3 d-flex align-items-center mx-3'>
                     <RiPlantLine size={100} style={{ color: "#fcf9f3" }} /> <span style={{ color: "#fcf9f3", fontSize: '70px', fontWeight: 'bold' }}>BLOOM!</span>
