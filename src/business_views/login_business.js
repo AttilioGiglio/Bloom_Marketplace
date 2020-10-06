@@ -2,9 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../assets/images/undraw_Login_re_4vu2.svg';
 import { RiUserAddLine } from 'react-icons/ri';
+import { RiPlantLine } from 'react-icons/ri';
 
 const LoginBusiness = () => {
     return (
+        <div className='d-flex'>
+            <Link to='/business' style={{ textDecoration: 'none' }}><div class="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
+                <RiPlantLine size={40} style={{ color: "#479A79" }} /> <div className='mt-1'><span style={{ color: "#479A79", fontSize: '40px', fontWeight: 'bold' }}>BLOOM!</span></div>
+            </div></Link>
         <section className='d-flex justify-content-center align-items-center' style={{ width: '100%', height: '100vh' }}>
             <div className='container'>
                 <div className='card p-5'>
@@ -39,6 +44,7 @@ const LoginBusiness = () => {
                 </div>
             </div>
         </section>
+        </div>
     )
 }
 

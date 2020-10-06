@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './checkout.scss'
-import CheckoutItem from './checkout_item'
-import { BsCreditCard } from 'react-icons/bs'
+import './checkout.scss';
+import CheckoutItem from './checkout_item';
+import { BsCreditCard } from 'react-icons/bs';
+import { RiPlantLine } from 'react-icons/ri';
 
 const CheckoutStepOne = () => {
     return (
+        <div className='d-flex'>
+            <Link to='/' style={{ textDecoration: 'none' }}><div class="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
+                <RiPlantLine size={40} style={{ color: "#2D624D" }} /> <div className='mt-1'><span style={{ color: "#2D624D", fontSize: '40px', fontWeight: 'bold' }}>BLOOM!</span></div>
+            </div></Link>
         <div className='checkout-page'>
             <div className='checkout-header'>
                 <div className='header-block'>
@@ -34,6 +39,7 @@ const CheckoutStepOne = () => {
                 </Link>
             </div>
 
+        </div>
         </div>
     )
 }

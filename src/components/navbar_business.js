@@ -20,10 +20,10 @@ const NavBar = () => {
                                 <Link to='/' className="nav-link active" style={{ textDecoration: 'none' }}>HOME</Link>
                             </li>
                             <li className="nav-item mr-3">
-                                <Link to='/signup_business' className="nav-link active" style={{ textDecoration: 'none' }}>SIGN UP</Link>
+                                <Link to='/signup_business' className="nav-link active" style={{ textDecoration: 'none' }}>CREAR CUENTA</Link>
                             </li>
                             <li className="nav-item mr-3">
-                                <Link to='/login_business' className="nav-link active" style={{ textDecoration: 'none' }}>LOGIN</Link>
+                                <Link to='/login_business' className="nav-link active" style={{ textDecoration: 'none' }}>INICIAR SESIÓN</Link>
                             </li>
                         </ul>
                     </div>

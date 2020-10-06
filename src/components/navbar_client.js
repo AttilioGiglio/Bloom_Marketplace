@@ -39,10 +39,10 @@ const NavBar = () => {
                             <Link to='/business' className="nav-link active" style={{ textDecoration: 'none' }}>VENDE CON BLOOM!</Link>
                         </li>
                         <li className="nav-item mr-3">
-                            <Link to='/signup_client' className="nav-link active" style={{ textDecoration: 'none' }}>SIGN UP</Link>
+                            <Link to='/signup_client' className="nav-link active" style={{ textDecoration: 'none' }}>CREAR CUENTA</Link>
                         </li>
                         <li className="nav-item mr-3">
-                            <Link to='/login_client' className="nav-link active" style={{ textDecoration: 'none' }}>LOGIN</Link>
+                            <Link to='/login_client' className="nav-link active" style={{ textDecoration: 'none' }}>INICIAR SESIÓN</Link>
                         </li>
                         <li className="nav-item">
                             <Link to='/checkout_step_one' className="nav-link active"><FiShoppingCart size={40} style={{ color: "#fcf9f3" }} className='icon' /></Link>
