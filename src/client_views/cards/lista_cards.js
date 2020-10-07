@@ -1,45 +1,107 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment} from 'react';
 import NavBar from '../../components/navbar_client'
-import Card from './card'
+
 
 const ListaCards = () => {
-
-    //  Saving data from plants API
-    const [products, setProducts] = useState({});
-
-    // Gettting data from plant API
-    const getFetch = async () => {
-        const imagesPerPag = 10;
-        const key = 'ONPwtsyxzijK61Eg1wQHBPmw_WuEh5woK9-BifDHQ30';
-        const url = `https://cors-anywhere.herokuapp.com/https://trefle.io/api/v1/plants?token=${key}&page=${imagesPerPag}`
-        const req = await fetch(url)
-        const res = await req.json()
-        setProducts(res.data)
-    }
-
-    // 
-    useEffect(() => {
-
-        getFetch()
-    }, [])
-
     return (
         <Fragment>
-            <NavBar />
-            <div className='row justify-content-center'>
-                    {
-                        (products!= null && products.length > 0)
-                            ?
-                            products.map((item, index) => (
-                                <Card key={item.id} common_name={item.common_name} image_url={item.image_url}/>
-                            ))
-                            :
-                            null
-                    }
+        <NavBar />
+        <div className='row d-flex justify-content-around'>
+            <div className='col-12 d-flex justify-content-around mt-5 mx-0 p-0'>
+                <div class="card" style={{ width: '18rem' }}>
+                    <img styles={{}} class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
                 </div>
-        </Fragment>
+                <div class="card" style={{ width: '18rem' }}>
+                    <img styles={{}} class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
 
+                <div class="card" style={{ width: '18rem' }}>
+                    <img styles={{}} class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+
+                <div class="card" style={{ width: '18rem' }}>
+                    <img styles={{}} class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+
+                <div class="card" style={{ width: '18rem' }}>
+                    <img styles={{}} class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div className='col-12 d-flex justify-content-around my-5 mx-0 p-0'>
+                <div class="card" style={{ width: '18rem' }}>
+                    <img styles={{}} class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card" style={{ width: '18rem' }}>
+                    <img styles={{}} class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+
+                <div class="card" style={{ width: '18rem' }}>
+                    <img styles={{}} class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+
+                <div class="card" style={{ width: '18rem' }}>
+                    <img styles={{}} class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+
+                <div class="card" style={{ width: '18rem' }}>
+                    <img styles={{}} class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </Fragment>
     )
+   
 }
 
 export default ListaCards

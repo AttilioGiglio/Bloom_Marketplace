@@ -1,7 +1,6 @@
 import React from 'react';
-import './card.scss'
 
-const Card = ({common_name, image_url}) => {
+const CardBlog = ({common_name, image_url}) => {
     console.log(image_url)
     return (
         <>
@@ -19,4 +18,4 @@ const Card = ({common_name, image_url}) => {
     )
 }
 
-export default Card
+export default CardBlog

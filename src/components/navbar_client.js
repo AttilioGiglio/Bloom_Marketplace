@@ -33,7 +33,7 @@ const NavBar = () => {
                             <Link to='/todos' className="nav-link active"  style={{ textDecoration: 'none' }}>PRODUCTOS</Link>
                         </li>
                         <li className="nav-item mr-3">
-                            <Link to='/noticias' className="nav-link active"  style={{ textDecoration: 'none' }}>BLOG</Link>
+                            <Link to='/blog' className="nav-link active"  style={{ textDecoration: 'none' }}>BLOG</Link>
                         </li>
                         <li className="nav-item mr-3">
                             <Link to='/business' className="nav-link active" style={{ textDecoration: 'none' }}>VENDE CON BLOOM!</Link>

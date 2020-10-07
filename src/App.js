@@ -4,7 +4,6 @@ import CheckoutStepOne from './client_views/checkout/checkout_step_one';
 import CheckoutStepTwo from './client_views/checkout/checkout_step_two'
 import HomeClient from './client_views/home_client';
 import Indoor from './client_views/indoor';
-import Noticias from './client_views/noticias';
 import Outdoor from './client_views/outdoor';
 import ListaCards from './client_views/cards/lista_cards';
 import LoginClient from './client_views/login_client';
@@ -17,6 +16,7 @@ import AddProduct from './business_views/account/add_product';
 import ProductsList from './business_views/account/products_list';
 import Profile from './business_views/account/profile';
 import OrdersList from './business_views/account/orders_list';
+import Blog from './client_views/Blog';
 
 
 // Agregar efecto de cambio de color a verde en navbar cuando se hace scroll
@@ -32,7 +32,7 @@ const App = () => {
                 <Route exact path='/todos' component={ListaCards} />
                 <Route exact path='/indoor' component={Indoor} />
                 <Route exact path='/outdoor' component={Outdoor} />
-                <Route exact path='/noticias' component={Noticias} />
+                <Route exact path='/blog' component={Blog} />
                 <Route exact path='/checkout_step_one' component={CheckoutStepOne} />
                 <Route exact path='/checkout_step_Two' component={CheckoutStepTwo} />
                 <Route exact path='/login_client' component={LoginClient} />
