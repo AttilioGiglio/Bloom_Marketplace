@@ -2,7 +2,8 @@ import React from 'react';
 import './navbar_client.scss'
 import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
-import Cart from './cart'
+import Cart from './cart/cart'
+import CartDropdown from './cart/cart_dropdown'
 
 const NavBar = () => {
     return (
@@ -46,6 +47,7 @@ const NavBar = () => {
                         </li>
                         <li className="nav-item">
                             <Link to='/checkout_step_one' className="nav-link active"><Cart /></Link>
+                            <CartDropdown />
                         </li>
                     </ul>
                 </div>
