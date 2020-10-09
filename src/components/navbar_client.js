@@ -2,7 +2,7 @@ import React from 'react';
 import './navbar_client.scss'
 import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
-import { FiShoppingCart } from 'react-icons/fi';
+import Cart from './cart'
 
 const NavBar = () => {
     return (
@@ -45,7 +45,7 @@ const NavBar = () => {
                             <Link to='/login_client' className="nav-link active" style={{ textDecoration: 'none' }}>INICIAR SESIÓN</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/checkout_step_one' className="nav-link active"><FiShoppingCart size={40} style={{ color: "#fcf9f3" }} className='icon' /></Link>
+                            <Link to='/checkout_step_one' className="nav-link active"><Cart /></Link>
                         </li>
                     </ul>
                 </div>
