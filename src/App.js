@@ -5,7 +5,6 @@ import CheckoutStepTwo from './client_views/checkout/checkout_step_two'
 import HomeClient from './client_views/home_client';
 import Indoor from './client_views/indoor';
 import Outdoor from './client_views/outdoor';
-import ListaCards from './client_views/cards/lista_cards';
 import LoginClient from './client_views/login_client';
 import SignupClient from './client_views/signup_client';
 import HomeBusiness from './business_views/home_business';
@@ -16,7 +15,9 @@ import AddProduct from './business_views/account/add_product';
 import ProductsList from './business_views/account/products_list';
 import Profile from './business_views/account/profile';
 import OrdersList from './business_views/account/orders_list';
-import Blog from './client_views/Blog';
+import ProductCards from './client_views/cards/product_cards';
+import BlogCards from './client_views/cards/blog_cards';
+import ProductProvider from './context/products/product_context'
 
 
 // Agregar efecto de cambio de color a verde en navbar cuando se hace scroll
@@ -25,14 +26,14 @@ import Blog from './client_views/Blog';
 
 const App = () => {
     return (
-        <>
+        <ProductProvider>
         <Router>
             <Switch>
                 <Route exact path='/' component={HomeClient} />
-                <Route exact path='/todos' component={ListaCards} />
-                <Route exact path='/indoor' component={Indoor} />
-                <Route exact path='/outdoor' component={Outdoor} />
-                <Route exact path='/blog' component={Blog} />
+                <Route exact path='/product_cards' component={ProductCards} />
+                <Route exact path='/indoor_products' component={Indoor} />
+                <Route exact path='/outdoor_proucts' component={Outdoor} />
+                <Route exact path='/blog_cards' component={BlogCards} />
                 <Route exact path='/checkout_step_one' component={CheckoutStepOne} />
                 <Route exact path='/checkout_step_Two' component={CheckoutStepTwo} />
                 <Route exact path='/login_client' component={LoginClient} />
@@ -47,7 +48,7 @@ const App = () => {
                 <Route exact path='/profile_business' component={Profile} />
             </Switch>
         </Router>
-        </>
+        </ProductProvider>
     )
 }
 

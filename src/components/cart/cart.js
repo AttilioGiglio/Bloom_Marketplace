@@ -3,6 +3,7 @@ import { ReactComponent as ShoppingIcon } from '../../assets/images/shopping-bag
 import './cart.scss'
 
 const Cart = () => {
+
     return (
         <div className='cart-icon pb-4'>
             <ShoppingIcon className='shopping-icon'/>

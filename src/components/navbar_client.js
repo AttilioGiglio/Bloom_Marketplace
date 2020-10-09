@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './navbar_client.scss'
 import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
@@ -6,6 +6,9 @@ import Cart from './cart/cart'
 import CartDropdown from './cart/cart_dropdown'
 
 const NavBar = () => {
+
+    const [toggle, setToggle] = useState(false);
+
     return (
         <div className='navBar client'>
             <nav className="navbar navbar-expand-lg navbar-light py-2 px-5">
@@ -18,7 +21,7 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav ml-auto pt-3 mb-1">
                         <li className="nav-item mr-3">
-                            <Link to='/' className="nav-link active"  style={{ textDecoration: 'none' }}>HOME</Link>
+                            <Link to='/' className="nav-link active" style={{ textDecoration: 'none' }}>HOME</Link>
                         </li>
                         {/* <li className="nav-item dropdown mr-3">
                             <a className="nav-link dropdown-toggle active" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,10 +34,10 @@ const NavBar = () => {
                             </div>
                         </li> */}
                         <li className="nav-item mr-3">
-                            <Link to='/todos' className="nav-link active"  style={{ textDecoration: 'none' }}>PRODUCTOS</Link>
+                            <Link to='product_cards' className="nav-link active" style={{ textDecoration: 'none' }}>PRODUCTOS</Link>
                         </li>
                         <li className="nav-item mr-3">
-                            <Link to='/blog' className="nav-link active"  style={{ textDecoration: 'none' }}>BLOG</Link>
+                            <Link to='/blog_cards' className="nav-link active" style={{ textDecoration: 'none' }}>BLOG</Link>
                         </li>
                         <li className="nav-item mr-3">
                             <Link to='/business' className="nav-link active" style={{ textDecoration: 'none' }}>VENDE CON BLOOM!</Link>
@@ -45,10 +48,17 @@ const NavBar = () => {
                         <li className="nav-item mr-3">
                             <Link to='/login_client' className="nav-link active" style={{ textDecoration: 'none' }}>INICIAR SESIÓN</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link to='/checkout_step_one' className="nav-link active"><Cart /></Link>
-                            <CartDropdown />
-                        </li>
+                        <li className="nav-item" onClick={() => setToggle(!toggle) }>
+                            <Cart/>
+                            </li>
+                            {
+                                toggle
+                                    ?
+                                    < CartDropdown />
+                                    :
+                                    null
+                            }
+
                     </ul>
                 </div>
             </nav>
