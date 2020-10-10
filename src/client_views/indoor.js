@@ -1,10 +1,6 @@
-import React, {useContext} from 'react';
-import { ProductContext } from '../context/products/product_context'
+import React from 'react';
 
 const Indoor = () => {
-    
-    const {shoppingCart} = useContext(ProductContext);
-    alert(shoppingCart)
     return (
         <div>
             

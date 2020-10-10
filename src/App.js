@@ -16,7 +16,7 @@ import ProductsList from './business_views/account/products_list';
 import Profile from './business_views/account/profile';
 import OrdersList from './business_views/account/orders_list';
 import ProductCards from './client_views/cards/product_cards';
-import BlogCards from './client_views/cards/blog_cards';
+import Blog from './client_views/Blog';
 import ProductProvider from './context/products/product_context'
 
 
@@ -33,7 +33,7 @@ const App = () => {
                 <Route exact path='/product_cards' component={ProductCards} />
                 <Route exact path='/indoor_products' component={Indoor} />
                 <Route exact path='/outdoor_proucts' component={Outdoor} />
-                <Route exact path='/blog_cards' component={BlogCards} />
+                <Route exact path='/blog_cards' component={Blog} />
                 <Route exact path='/checkout_step_one' component={CheckoutStepOne} />
                 <Route exact path='/checkout_step_Two' component={CheckoutStepTwo} />
                 <Route exact path='/login_client' component={LoginClient} />

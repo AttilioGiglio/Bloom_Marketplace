@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState  } from 'react';
-import CardBlog from './cards/card_blog'
+import BlogCards from './cards/blog_cards'
 import NavBar from '../components/navbar_client';
 
 const Blog = () => {
@@ -16,9 +16,7 @@ const Blog = () => {
         setProducts(res.data)
     }
 
-    // 
     useEffect(() => {
-
         getFetch()
     }, [])
 
@@ -30,7 +28,7 @@ const Blog = () => {
                         (products!= null && products.length > 0)
                             ?
                             products.map((item, index) => (
-                                <CardBlog key={item.id} common_name={item.common_name} image_url={item.image_url}/>
+                                <BlogCards key={item.id} common_name={item.common_name} image_url={item.image_url}/>
                             ))
                             :
                             null
