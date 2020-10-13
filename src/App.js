@@ -17,7 +17,7 @@ import Profile from './business_views/account/profile';
 import OrdersList from './business_views/account/orders_list';
 import ProductCards from './client_views/cards/product_cards';
 import Blog from './client_views/Blog';
-import ProductProvider from './context/products/product_context'
+import ProductProvider from './context/products/product_state'
 
 
 // Agregar efecto de cambio de color a verde en navbar cuando se hace scroll

@@ -1,23 +1,27 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import ProductContext from '../../context/products/product_context';
 
-const CardProduct = ({name, price, id}) => {
+const CardProduct = ({product}) => {
     
-    const productSelector = () => {
-        
+    const { updateProductsCart } = useContext(ProductContext);
+
+
+    const productSelectorCart = (product) => {
+        updateProductsCart(product)
     }
 
     return (
         <>
-            <div class="card" style={{ width: '18rem' }}>
-            <Link> 
-            <img class="card-img-top" src="https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG" alt="Card image cap" />
-            </Link>
-                   <div class="card-body">
-                        <h5 class="card-title">{name}</h5>
-                        <p className='card-text'>{price}</p>
-                        <button onClick={() => productSelector(id)} class="btn btn-primary">Agregar al Carrito</button>
-                         <Link to='checkout_step_one' class="btn btn-primary">Comprar ahora</Link>
+            <div className="card" style={{ width: '18rem' }}>
+
+            <img className="card-img-top" src={product.img} alt="Card image cap" />
+
+                   <div className="card-body">
+                        <h5 className="card-title">{product.name}</h5>
+                        <p className='card-text'>${product.price}</p>
+                        <button onClick={() => productSelectorCart(product)} className="btn btn-primary">Agregar al Carrito</button>
+                        <Link to='checkout_step_one'><button onClick={() => productSelectorCart(product)} className="btn btn-primary">Comprar ahora</button></Link>
                     </div>
                 </div>
         </>

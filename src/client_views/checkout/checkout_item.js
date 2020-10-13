@@ -1,17 +1,26 @@
 import React from 'react';
-import'./checkout_item.scss';
+import './checkout_item.scss';
 
-const CheckoutItem = () => {
+const CheckoutItem = ({ cart }) => {
     return (
-        <div className='checkout-item'>
-            <div className='image-container'>
-                <img alt='item' />
-            </div>
-            <span className='name'>Girasol</span>
-            <span className='quantity'>1</span>
-            <span className='price'>$10000</span>
-            <span className='remove-button'>&#10005;</span>
-        </div>
+        <tbody>
+            {
+                cart.length === 0
+                    ? <tr style={{ width: '100%', paddingTop: '15px' }}><th>No hay tareas...</th></tr>
+                    :
+                    cart.map(item => (
+                        <tr>
+                            <th><img style={{width:'20%'}} src={item.img} alt="Card image cap">{item.img}</img></th>
+                            <th>{item.name}</th>
+                            <th>counter</th>
+                            <th>${item.price}</th>
+                            <th>&#10005;</th>
+                        </tr>
+                    ))
+            }
+        </tbody>
+
+
     )
 }
 
