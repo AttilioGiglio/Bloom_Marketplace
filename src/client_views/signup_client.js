@@ -27,14 +27,22 @@ const SignupClient = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        // validacion de campos vacios
         if(name.trim() === '' || email.trim() === '' || password.trim() === '' || confirm.trim() === ''){
             showAlert('Todos los campos son obligatorios', 'alert-error')
         }
-
-        // validacion de campos vacios
         // validacion password min 6 caracteres
+        if(password.length < 6) {
+            showAlert('La contraseña debe ser al menos de 6 caracteres', 'alert-error')
+            return;
+        }
         // validacion 2 password iguales
+        if(password !== confirm){
+            showAlert('Las contraseñas deben ser iguales', 'alert-error')
+            return;
+        }
         // pasarlo al action del context
+        
     }
 
     return (
