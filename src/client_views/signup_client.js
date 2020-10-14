@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../assets/images/Asset1.svg';
 import { RiLoginBoxLine } from 'react-icons/ri';
 import { RiPlantLine } from 'react-icons/ri';
+import AlertContext from '../context/alert/alert_context'
+import './alert.scss'
 
 
 const SignupClient = () => {
+
+    const {alert, showAlert} = useContext(AlertContext);
 
     const [clientSignup, setClientSignup] = useState({
         name: '',
@@ -14,6 +18,8 @@ const SignupClient = () => {
         confirm: '',
     })
 
+    const { name, email, password, confirm } = clientSignup;
+
     const onChange = (e) => {
         setClientSignup({ ...clientSignup, [e.target.name]: e.target.value })
     }
@@ -21,15 +27,15 @@ const SignupClient = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
+        if(name.trim() === '' || email.trim() === '' || password.trim() === '' || confirm.trim() === ''){
+            showAlert('Todos los campos son obligatorios', 'alert-error')
+        }
 
         // validacion de campos vacios
         // validacion password min 6 caracteres
         // validacion 2 password iguales
         // pasarlo al action del context
     }
-
-    const { name, email, password, confirm } = clientSignup;
 
     return (
         <div className='d-flex'>
@@ -40,7 +46,9 @@ const SignupClient = () => {
                 <div className='container'>
                     <div className='card p-5'>
                         <div className='row' className='d-flex justify-content-center align-items-center' >
+                        
                             <div className='col-4 align-self-center mx-2'>
+                            {alert ? (<div className={`alert ${alert.category}`}>{alert.msg}</div>) : null}
                                 <form
                                     style={{ fontSize: '20px' }}
                                     onSubmit={onSubmit}
