@@ -15,6 +15,22 @@ const AuthProvider = (props) => {
 
     const [state, dispatch] = useReducer(AuthReducer, initialState)
 
+    const userRegister = ()/*async data*/ => {
+        try{
+            // response 
+
+            dispatch({
+                type: SUCCESS_REGISTER
+            })
+        }
+        catch (error){
+            console.log(error);
+            dispatch({
+                type:ERROR_LOGIN
+            })
+        }
+    }
+
     return (
         <AuthContext.Provider
         value={{

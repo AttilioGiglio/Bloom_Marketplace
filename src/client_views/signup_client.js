@@ -6,6 +6,14 @@ import { RiPlantLine } from 'react-icons/ri';
 
 
 const SignupClient = () => {
+
+    const [userClient, setUserClient] = useState({
+        name: '',
+        email: '',
+        password: '',
+        confirm: '',
+    })
+
     return (
         <div className='d-flex'>
                 <Link to='/' style={{ textDecoration: 'none' }}><div class="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
