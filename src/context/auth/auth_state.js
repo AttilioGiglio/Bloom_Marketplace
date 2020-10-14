@@ -7,7 +7,10 @@ import { SUCCESS_REGISTER, ERROR_REGISTER, GET_USER, SUCESS_LOGIN, ERROR_LOGIN, 
 const AuthProvider = (props) => {
     
     const initialState = { 
-        token:localStorage.getItem('token')
+        token:localStorage.getItem('token'),
+        auth: null,
+        user: null,
+        message: null
     }
 
     const [state, dispatch] = useReducer(AuthReducer, initialState)
@@ -15,6 +18,10 @@ const AuthProvider = (props) => {
     return (
         <AuthContext.Provider
         value={{
+            token: state.token,
+            auth: state.auth,
+            user: state.user,
+            message: state.message
         }}
         >
             {props.children}
