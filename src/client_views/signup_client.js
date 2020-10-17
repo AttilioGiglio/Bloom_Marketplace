@@ -1,21 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../assets/images/Asset1.svg';
 import { RiLoginBoxLine } from 'react-icons/ri';
 import { RiPlantLine } from 'react-icons/ri';
 import AlertContext from '../context/alert/alert_context'
 import './alert.scss'
+import AuthContext from '../context/auth/auth_context';
 
 
-const SignupClient = () => {
+const SignupClient = ({history}) => {
 
     const {alert, showAlert} = useContext(AlertContext);
+
+    const {userAuth, registerUser, auth} = useContext(AuthContext);
+
+    // En caso de que el usuario se haya autenticado o registrado o sea un registro duplicado
+    useEffect(() => {
+        (auth)&&history.push('/login_client');
+    }, [auth, history])
 
     const [clientSignup, setClientSignup] = useState({
         name: '',
         email: '',
         password: '',
-        confirm: '',
     })
 
     const { name, email, password, confirm } = clientSignup;
@@ -28,7 +35,7 @@ const SignupClient = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         // validacion de campos vacios
-        if(name.trim() === '' || email.trim() === '' || password.trim() === '' || confirm.trim() === ''){
+        if(name.trim() === '' || email.trim() === '' || password.trim() === ''){
             showAlert('Todos los campos son obligatorios', 'alert-error')
         }
         // validacion password min 6 caracteres
@@ -36,13 +43,20 @@ const SignupClient = () => {
             showAlert('La contraseña debe ser al menos de 6 caracteres', 'alert-error')
             return;
         }
-        // validacion 2 password iguales
-        if(password !== confirm){
-            showAlert('Las contraseñas deben ser iguales', 'alert-error')
-            return;
-        }
-        // pasarlo al action del context
+
+        userAuth();
         
+        // pasarlo al action del context
+        registerUser(clientSignup); 
+
+        localStorage.setItem('newuser', JSON.stringify(clientSignup))
+
+        setClientSignup( {
+            name: '',
+            email: '',
+            password: '',
+            confirm: '',
+        })
     }
 
     return (
@@ -62,7 +76,7 @@ const SignupClient = () => {
                                     onSubmit={onSubmit}
                                 >
                                     <div className="form-group">
-                                        <label for="exampleInputEmail1">Nombre</label>
+                                        <label>Nombre</label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -73,7 +87,7 @@ const SignupClient = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label for="exampleInputEmail1">Correo</label>
+                                        <label>Correo</label>
                                         <input
                                             type="email"
                                             className="form-control"
@@ -84,24 +98,13 @@ const SignupClient = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label for="exampleInputPassword1">Contraseña</label>
+                                        <label>Contraseña</label>
                                         <input
-                                            type="password"
+                                            type="text"
                                             className="form-control"
                                             id="password"
                                             name='password'
                                             value={password}
-                                            onChange={onChange}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="exampleInputPassword1">Confirmar contraseña</label>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            id="confirm"
-                                            name='confirm'
-                                            value={confirm}
                                             onChange={onChange}
                                         />
                                     </div>

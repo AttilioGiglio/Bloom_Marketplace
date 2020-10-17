@@ -1,11 +1,11 @@
 import React, { useReducer } from 'react';
 import ProductReducer from './product_reducer';
 import ProductContext from './product_context';
-import { UPDATE_PRODUCTS_CART} from '../../types/constants';
+import { ADD_PRODUCTS, GET_PRODUCTS, DELETE_PRODUCTS, UPDATE_PRODUCTS_CART } from '../../types/constants';
 
 const ProductProvider = (props) => {
     
-    const initialState = { 
+    const initialState = {
         productlist: [
         { id: 1, img:'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#1', price: 50000 },
         { id: 2, img:'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#2', price: 20000 },
@@ -22,6 +22,15 @@ const ProductProvider = (props) => {
     }
 
     const [state, dispatch] = useReducer(ProductReducer, initialState)
+
+    
+
+    const addProduct = product => {
+        dispatch({
+            type: ADD_PRODUCTS ,
+            payload: product
+        })
+    }
 
     const updateProductsCart = product => {
         dispatch({

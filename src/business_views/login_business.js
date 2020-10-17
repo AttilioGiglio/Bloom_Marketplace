@@ -17,12 +17,12 @@ const LoginBusiness = () => {
                         <div className='col-5 align-self-center mx-2'>
                             <form style={{ fontSize: '20px' }}>
                                 <div className="form-group">
-                                    <label for="exampleInputEmail1">Correo</label>
-                                    <input type="email" className="form-control" id="exampleInputEmail1" />
+                                    <label>Correo</label>
+                                    <input type="email" className="form-control" />
                                 </div>
                                 <div className="form-group">
-                                    <label for="exampleInputPassword1">Contraseña</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1" />
+                                    <label>Contraseña</label>
+                                    <input type="password" className="form-control" />
                                 </div>
                                 <Link
                                     to={'/summary_business'}>

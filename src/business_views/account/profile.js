@@ -5,11 +5,11 @@ import FormProfile from './components/form_profile';
 
 const Profile = () => {
     return (
-        <div class="d-flex" id="content-wrapper">
+        <div className="d-flex" id="content-wrapper">
         <Sidebar />
         <div className='w-100'>
             <NavbarAccount />
-            <div id="content" class="w-100">
+            <div id="content" className="w-100">
             <FormProfile />
             </div>
         </div>

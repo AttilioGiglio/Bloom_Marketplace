@@ -1,12 +1,17 @@
+// shopping cart
+export const ADD_PRODUCTS = 'ADD_PRODUCTS';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const DELETE_PRODUCTS = 'DELETE_PRODUCTS';
 export const UPDATE_PRODUCTS_CART = 'GET_PRODUCTS_CART';
 export const DELETE_PRODUCTS_CART = 'DELETE_PRODUCTS_CART';
-
+// validation
 export const SHOW_ALERT = 'SHOW_ALERT';
 export const HIDE_ALERT = 'HIDE_ALERT';
-
-export const SUCCESS_REGISTER = 'SUCCESS_REGISTER';
-export const ERROR_REGISTER = 'ERROR_REGISTER';
-export const GET_USER = 'ERROR_REGISTER';
-export const SUCESS_LOGIN = 'ERROR_REGISTER';
-export const ERROR_LOGIN = 'ERROR_REGISTER';
-export const CLOSE_SESSION = 'CLOSE_SESSION';
+// auth
+export const USER_AUTH = 'USER_AUTH';
+// register
+export const REGISTER_USER = 'REGISTER_USER';
+// Account_client
+export const DELETE_USER = 'DELETE_USER';
+// login
+export const USER_LOGIN = 'USER_LOGIN'; 

@@ -3,6 +3,7 @@ import './checkout_item.scss';
 
 const CheckoutItem = ({ cart }) => {
     return (
+        <div className='checkout-item'>
         <tbody>
             {
                 cart.length === 0
@@ -10,16 +11,16 @@ const CheckoutItem = ({ cart }) => {
                     :
                     cart.map(item => (
                         <tr>
-                            <th><img style={{width:'20%'}} src={item.img} alt="Card image cap">{item.img}</img></th>
-                            <th>{item.name}</th>
-                            <th>counter</th>
-                            <th>${item.price}</th>
-                            <th>&#10005;</th>
+                            <th className='image-container'><img style={{width:'50%'}} src={item.img} alt="card cap" /></th>
+                            <th className='name'>{item.name}</th>
+                            <th className='quantity'>Counter</th>
+                            <th className='price'>${item.price}</th>
+                            <th className='remove-button'>&#10005;</th>
                         </tr>
                     ))
             }
         </tbody>
-
+</div>
 
     )
 }

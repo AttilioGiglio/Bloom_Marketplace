@@ -12,13 +12,13 @@ const CheckoutStepOne = () => {
 
     return (
         <div className='d-flex'>
-            <Link to='/' style={{ textDecoration: 'none' }}><div class="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
+            <Link to='/' style={{ textDecoration: 'none' }}><div className="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
                 <RiPlantLine size={40} style={{ color: "#2D624D" }} /> <div className='mt-1'><span style={{ color: "#2D624D", fontSize: '40px', fontWeight: 'bold' }}>BLOOM!</span></div>
             </div></Link>
             <div className='checkout-page'>
                 <table style={{ width: '100%' }}>
                 <thead>
-                    <tr>
+                    <tr className='titule'>
                         <th>Productos</th>
                         <th>Descripción</th>
                         <th>Cantidad</th>

@@ -1,36 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoMdAddCircleOutline } from 'react-icons/io'
 
 const FormAddProduct = () => {
+
+    const [product, setProduct] = useState({
+        category: '',
+        name: '',
+        quantity: 0,
+        price: 0,
+        description: '',
+        image: ''
+    } )
+
+    const { name, quantity, price, description, image} = product;
+
+    const handleChange = (e) => {
+        setProduct({...product, [e.target.name]:e.target.value})
+    }
+
     return (
         <form className='card p-4' style={{ margin: '50px auto 0', width: '80%', minHeight: '50vh' }}>
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label for="validationDefault01">Categoria</label>
-                    <input type="text" class="form-control" id="validationDefault01" value="Mark" required />
+            <div className="form-row">
+                <div className="col-md-3 mb-3">
+                    <label>Categoria</label>
+                    <input 
+                    type="text" 
+                    className="form-control"
+                    onChange={handleChange}
+                    required />
                 </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationDefault01">Nombre Producto</label>
-                    <input type="text" class="form-control" id="validationDefault02" value="Otto" required />
+                <div className="col-md-3 mb-3">
+                    <label>Nombre Producto</label>
+                    <input 
+                    type="text" 
+                    className="form-control" 
+                    required
+                    onChange={handleChange}
+                     />
                 </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationDefault01">Cantidad</label>
-                    <input type="text" class="form-control" id="validationDefault02" value="Otto" required />
+                <div className="col-md-3 mb-3">
+                    <label>Cantidad</label>
+                    <input 
+                    type="text" 
+                    className="form-control" 
+                    required 
+                    onChange={handleChange}
+                    />
                 </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationDefault01">Precio</label>
-                    <input type="text" class="form-control" id="validationDefault02" value="Otto" required />
+                <div className="col-md-3 mb-3">
+                    <label>Precio</label>
+                    <input 
+                    type="text" 
+                    className="form-control" 
+                    onChange={handleChange}
+                    required />
                 </div>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Decripción</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <div className="form-group">
+                <label>Decripción</label>
+                <textarea 
+                className="form-control"
+                id="exampleFormControlTextarea1" 
+                rows="3"
+                onChange={handleChange}
+                ></textarea>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlFile1">Imagen de tu producto</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1" required />
+            <div className="form-group">
+                <label>Imagen de tu producto</label>
+                <input 
+                type="file" 
+                className="form-control-file"
+                value={image}
+                onChange={handleChange}
+                required 
+                />
             </div>
-            <button class="btn mt-3" style={{ width: '15%', background: '#479A79', border: 'solid 1px #479A79', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '20px' }} type="submit">Agregar <IoMdAddCircleOutline style={{ color: '#fcf9f3', fontSize: '20px' }} /></button>
+            <button className="btn mt-3" style={{ width: '15%', background: '#479A79', border: 'solid 1px #479A79', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '20px' }} type="submit">Agregar <IoMdAddCircleOutline style={{ color: '#fcf9f3', fontSize: '20px' }} /></button>
         </form>
     )
 }

@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom';
 const ProductsList = () => {
     return (
         <div>
-            <div class="d-flex" id="content-wrapper">
+            <div className="d-flex" id="content-wrapper">
                 <Sidebar />
                 <div className='w-100'>
                     <NavbarAccount />
