@@ -25,7 +25,7 @@ const SignupClient = ({history}) => {
         password: '',
     })
 
-    const { name, email, password, confirm } = clientSignup;
+    const { name, email, password } = clientSignup;
 
     const onChange = (e) => {
         setClientSignup({ ...clientSignup, [e.target.name]: e.target.value })

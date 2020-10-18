@@ -17,17 +17,16 @@ import Profile from '../business_views/account/profile';
 import OrdersList from '../business_views/account/orders_list';
 import ProductCards from '../client_views/cards/product_cards';
 import Blog from '../client_views/Blog';
-import ProductProvider from '../context/products/product_state'
 import AuthProvider from '../context/auth/auth_state';
 import AlertProvider from '../context/alert/alert_state';
 import PrivateRoutes from './private_routes';
+import injectContext from '../store/context';
 
 
 const AppRouter = () => {
     return (
 
         <AuthProvider>
-            <ProductProvider>
                 <AlertProvider>
                     <Router>
                         <Switch>
@@ -51,10 +50,9 @@ const AppRouter = () => {
                         </Switch>
                     </Router>
                 </AlertProvider>
-            </ProductProvider>
         </AuthProvider>
 
     )
 }
 
-export default AppRouter;
+export default injectContext(AppRouter);

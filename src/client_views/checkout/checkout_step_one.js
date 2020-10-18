@@ -4,11 +4,11 @@ import './checkout.scss';
 import CheckoutItem from './checkout_item';
 import { BsCreditCard } from 'react-icons/bs';
 import { RiPlantLine } from 'react-icons/ri';
-import ProductContext from '../../context/products/product_context';
+import {Context} from '../../store/context'
 
 const CheckoutStepOne = () => {
 
-    const { cart } = useContext(ProductContext);
+    const { store } = useContext(Context);
 
     return (
         <div className='d-flex'>
@@ -27,11 +27,11 @@ const CheckoutStepOne = () => {
                     </tr>
 </thead>
                     <CheckoutItem
-                        cart={cart}
+                        cart={store.cart}
                     />
                 </table>
                 <div className='total'>
-                    <span>Total: ${cart.reduce((acc, product) => acc + product.price, 0)}</span>
+                    <span>Total: ${store.cart.reduce((acc, product) => acc + product.price, 0)}</span>
                 </div>
                 <div className='total'>
                     <Link to='/checkout_step_two'>
