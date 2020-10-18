@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import './navbar_client.scss'
+import React, { useContext, useState } from 'react';
+import './navbar_client.scss';
 import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
-import Cart from './cart/cart'
-import CartDropdown from './cart/cart_dropdown'
+import Cart from './cart/cart';
+import CartDropdown from './cart/cart_dropdown';
+import { Context } from '../store/context';
 
 const NavBar = () => {
 
     const [toggle, setToggle] = useState(false);
+
+    const {store} = useContext(Context)
 
     return (
         <div className='navBar client'>
@@ -42,12 +45,23 @@ const NavBar = () => {
                         <li className="nav-item mr-3">
                             <Link to='/business' className="nav-link active" style={{ textDecoration: 'none' }}>VENDE CON BLOOM!</Link>
                         </li>
+                        {
+                            (store.auth)
+                        
+                        ?
+                        <li className="nav-item mr-3">
+                            <Link to='/' className="nav-link active" style={{ textDecoration: 'none' }}>CERRAR SESIÓN</Link>
+                        </li>
+                        :
+                        <>
                         <li className="nav-item mr-3">
                             <Link to='/signup_client' className="nav-link active" style={{ textDecoration: 'none' }}>CREAR CUENTA</Link>
                         </li>
                         <li className="nav-item mr-3">
                             <Link to='/login_client' className="nav-link active" style={{ textDecoration: 'none' }}>INICIAR SESIÓN</Link>
                         </li>
+                        </>
+                        }
                         <li className="nav-item" onClick={() => setToggle(!toggle) }>
                             <Cart/>
                             </li>

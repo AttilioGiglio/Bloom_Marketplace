@@ -1,23 +1,19 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../assets/images/Asset1.svg';
 import { RiLoginBoxLine } from 'react-icons/ri';
 import { RiPlantLine } from 'react-icons/ri';
 import AlertContext from '../context/alert/alert_context'
 import './alert.scss'
-import AuthContext from '../context/auth/auth_context';
+import { Context } from '../store/context';
 
 
-const SignupClient = ({history}) => {
 
-    const {alert, showAlert} = useContext(AlertContext);
+const SignupClient = ({ history }) => {
 
-    const {userAuth, registerUser, auth} = useContext(AuthContext);
+    const { alert, showAlert } = useContext(AlertContext);
 
-    // En caso de que el usuario se haya autenticado o registrado o sea un registro duplicado
-    useEffect(() => {
-        (auth)&&history.push('/login_client');
-    }, [auth, history])
+    const { actions } = useContext(Context)
 
     const [clientSignup, setClientSignup] = useState({
         name: '',
@@ -27,50 +23,50 @@ const SignupClient = ({history}) => {
 
     const { name, email, password } = clientSignup;
 
-    const onChange = (e) => {
-        setClientSignup({ ...clientSignup, [e.target.name]: e.target.value })
+    const onChange = (e) => { 
+        let value = e.target.value;
+        (e.target.name === 'email')&&(value = value.toLowerCase())
+        setClientSignup({ ...clientSignup, [e.target.name]: value })
     }
 
 
     const onSubmit = (e) => {
         e.preventDefault();
         // validacion de campos vacios
-        if(name.trim() === '' || email.trim() === '' || password.trim() === ''){
+        if (name.trim() === '' || email.trim() === '' || password.trim() === '') {
             showAlert('Todos los campos son obligatorios', 'alert-error')
         }
         // validacion password min 6 caracteres
-        if(password.length < 6) {
+        if (password.length < 6) {
             showAlert('La contraseña debe ser al menos de 6 caracteres', 'alert-error')
             return;
         }
 
-        userAuth();
-        
         // pasarlo al action del context
-        registerUser(clientSignup); 
+        actions.registerUser(clientSignup);
 
-        localStorage.setItem('newuser', JSON.stringify(clientSignup))
-
-        setClientSignup( {
+        setClientSignup({
             name: '',
             email: '',
             password: '',
             confirm: '',
         })
+        
+        history.push('/login_client');
     }
 
     return (
         <div className='d-flex'>
-            <Link to='/' style={{ textDecoration: 'none' }}><div class="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
+            <Link to='/' style={{ textDecoration: 'none' }}><div className="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
                 <RiPlantLine size={40} style={{ color: "#2D624D" }} /> <div className='mt-1'><span style={{ color: "#2D624D", fontSize: '40px', fontWeight: 'bold' }}>BLOOM!</span></div>
             </div></Link>
             <section className='d-flex justify-content-center align-items-center' style={{ width: '100%', height: '100vh' }}>
                 <div className='container'>
                     <div className='card p-5'>
                         <div className='row' className='d-flex justify-content-center align-items-center' >
-                        
+
                             <div className='col-4 align-self-center mx-2'>
-                            {alert ? (<div className={`alert ${alert.category}`}>{alert.msg}</div>) : null}
+                                {alert ? (<div className={`alert ${alert.category}`}>{alert.msg}</div>) : null}
                                 <form
                                     style={{ fontSize: '20px' }}
                                     onSubmit={onSubmit}

@@ -21,10 +21,10 @@ const NavbarAccount = () => {
                     </form>
                     <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <ReactLogo className='mr-2 rounded-circle avatar' />
                                 <span style={{ color: '#479A79' }}>Attilio Giglio</span>
-                            </a>
+                            </div>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <Link to='/profile_business' className="dropdown-item" href="#"><span style={{ color: '#479A79' }}>Mi Perfil</span></Link>
                                 <div className="dropdown-divider"></div>

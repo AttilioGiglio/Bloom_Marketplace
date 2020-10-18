@@ -7,9 +7,14 @@ import { RiPlantLine } from 'react-icons/ri';
 const SignupBusiness = () => {
     return (
         <div className='d-flex'>
-            <Link to='/business' style={{ textDecoration: 'none' }}><div class="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
-                <RiPlantLine size={40} style={{ color: "#479A79" }} /> <div className='mt-1'><span style={{ color: "#479A79", fontSize: '40px', fontWeight: 'bold' }}>BLOOM!</span></div>
-            </div></Link>
+            <Link to='/business' style={{ textDecoration: 'none' }}>
+            <div className="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
+                <RiPlantLine size={40} style={{ color: "#479A79" }} /> 
+                <div className='mt-1'>
+                <span style={{ color: "#479A79", fontSize: '40px', fontWeight: 'bold' }}>BLOOM!</span>
+                </div>
+            </div>
+            </Link>
             <section className='d-flex justify-content-center align-items-center' style={{ width: '100%', height: '100vh' }}>
                 <div className='container'>
                     <div className='card p-5'>

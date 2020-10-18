@@ -1,32 +1,52 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../assets/images/Asset2.svg';
 import { RiUserAddLine } from 'react-icons/ri';
 import { RiPlantLine } from 'react-icons/ri';
-import AuthContext from '../context/auth/auth_context';
+import './alert.scss'
+import { Context } from '../store/context';
+import AlertContext from '../context/alert/alert_context';
 
-const LoginClient = () => {
+const LoginClient = ({history}) => {
     
-    const [login, setLogin] = useState({
+    const [clientLogin, setClientLogin] = useState({
         email: '',
         password: ''
     })
+    
+    const { alert, showAlert } = useContext(AlertContext);
 
-    const {currentUser} = useContext(AuthContext)
+    const {email, password} = clientLogin;
+
+    const {store, actions} = useContext(Context)
 
     const handleChange = (e) => {
-        setLogin({...login, [e.target.name]:e.target.value})
+        let value = e.target.value;
+        (e.target.name === 'email')&&(value = value.toLowerCase())
+        setClientLogin({...clientLogin, [e.target.name]: value})
     }
 
-    const clientLogin = (e) => {
+    const loginSubmit = (e) => {
         e.preventDefault();
-        currentUser(login)
-
+        if ( email.trim() === '' || password.trim() === '') {
+            showAlert('Todos los campos son obligatorios', 'alert-error')
+        }
+        if (password.length < 6) {
+            showAlert('La contraseña debe ser al menos de 6 caracteres', 'alert-error')
+            return;
+        }
+        actions.loginUser(clientLogin)
+        localStorage.setItem('newuser', JSON.stringify(clientLogin))
+        store.users.map(user => (user.email === clientLogin.email && store.auth) ? history.push('/') : showAlert('No se encuentra registrado','alert-error'))
+        setClientLogin({
+            email: '',
+            password: '',
+        })
     }
 
     return (
         <div className='d-flex'>
-            <Link to='/' style={{ textDecoration: 'none' }}><div class="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
+            <Link to='/' style={{ textDecoration: 'none' }}><div className="position-absolute d-flex ml-4 mt-3 d-flex align-items-center">
                 <RiPlantLine size={40} style={{ color: "#2D624D" }} /> <div className='mt-1'><span style={{ color: "#2D624D", fontSize: '40px', fontWeight: 'bold' }}>BLOOM!</span></div>
             </div></Link>
             <section className='d-flex justify-content-center align-items-center' style={{ width: '100%', height: '100vh' }}>
@@ -36,12 +56,15 @@ const LoginClient = () => {
                             <div className='col-5 align-self-center mx-2'>
                                 <form
                                     style={{ fontSize: '20px' }}
-                                    onSubmit={clientLogin}
+                                    onSubmit={loginSubmit}
                                 >
+                                                            {alert ? (<div className={`alert ${alert.category}`}>{alert.msg}</div>) : null}
                                     <div className="form-group">
                                         <label>Correo</label>
                                         <input 
                                         type="email" 
+                                        name='email'
+                                        value={email}
                                         className="form-control"
                                         onChange={handleChange}
                                          />
@@ -50,12 +73,12 @@ const LoginClient = () => {
                                         <label>Contraseña</label>
                                         <input 
                                         type='text' 
+                                        name='password'
+                                        value={password}
                                         className="form-control"
                                         onChange={handleChange}
                                          />
                                     </div>
-                                    <Link
-                                        to={'/'}>
                                         <button
                                             type="submit"
                                             className="btn my-2 px-3"
@@ -68,7 +91,6 @@ const LoginClient = () => {
                                             }}>
                                             Iniciar Sesión
                                 </button>
-                                    </Link>
                                 </form>
                                 <Link
                                     to={'/signup_client'}

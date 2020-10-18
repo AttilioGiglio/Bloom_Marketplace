@@ -17,7 +17,7 @@ const CartDropdown = () => {
                         :
                         store.cart.map(item => (
                          <div className='col-12 d-flex'>
-                        <img className='pb-3' style={{width:'20%'}} src={item.img} alt="Card image cap" />
+                        <img className='pb-3' style={{width:'20%'}} src={item.img} alt="Card cap" />
                         <p className='mb-0 mr-2 align-self-center'>{item.name}</p>
                         <p className='mb-0 mr-2 align-self-center'>${item.price}</p>
                         <p className='mb-0 align-self-center'>&#10005;</p>
@@ -38,7 +38,8 @@ const CartDropdown = () => {
                         }}
                         >
                             <Link to='/checkout_step_one'>
-                                Comprar</Link>
+                                Comprar
+                            </Link>
                         </button>
                 </div>
     )

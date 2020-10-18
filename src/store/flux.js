@@ -34,12 +34,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			auth: false,
 
 			users: [
-				{ id: 1, nombre: 'juan', email: 'juan@hotmail.com', contraseña: '1234567' },
-				{ id: 2, nombre: 'andres', email: 'andres@gmail.com', contraseña: '9876543' },
-				{ id: 3, nombre: 'juana', email: 'juana@hotmail.com', contraseña: '7654321' },
-				{ id: 4, nombre: 'andrea', email: 'andrea@gmail.com', contraseña: '3456789' }
+				{
+					id: 'testID',
+					name: 'Test',
+					email: 'test@gmail.com',
+					password: 'test123'
+				}
 			],
-			
+
 			currentuser: null,
 
 		},
@@ -53,7 +55,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addProduct: (e) => {
 				e.preventDefault();
-				console.log(store.category)
 				const store = getStore();
 				store.product.id = uuidv4();
 				setStore([...store.productlist, store.productlist.push({
@@ -67,6 +68,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const newitemCart = { id: product.id, img: product.img, name: product.name, price: product.price }
 				setStore([...store.cart, store.cart.push(newitemCart)])
 			},
+
+			registerUser: (newuser) => {
+				const store = getStore();
+				newuser.id = uuidv4();
+				setStore([...store.users, store.users.push(newuser)])
+			},
+
+			loginUser: (params) => {
+				const store = getStore();
+				const client = {email:params.email, password:params.password};
+				setStore({currentuser:client})
+				setStore({auth:!store.auth})
+				
+			},
+
+			logoutUser: () => {
+				const store = getStore();
+
+			}
 
 		}
 	}
