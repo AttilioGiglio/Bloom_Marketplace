@@ -10,7 +10,7 @@ const NavBar = () => {
 
     const [toggle, setToggle] = useState(false);
 
-    const {store} = useContext(Context)
+    const {store, actions} = useContext(Context)
 
     return (
         <div className='navBar client'>
@@ -49,7 +49,7 @@ const NavBar = () => {
                             (store.auth)
                         
                         ?
-                        <li className="nav-item mr-3">
+                        <li className="nav-item mr-3" onClick={actions.logoutUser}>
                             <Link to='/' className="nav-link active" style={{ textDecoration: 'none' }}>CERRAR SESIÓN</Link>
                         </li>
                         :

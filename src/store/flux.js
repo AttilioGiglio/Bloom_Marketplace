@@ -48,18 +48,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		actions: {
 
-			handleChange_AddProduct: (e) => {
+			handleChange_AddProduct: e => {
 				const store = getStore();
-				setStore({ ...store.product, [e.target.name]: e.target.value })
+				const {product} = store;
+				product[e.target.name] = e.target.value;
+				setStore({ product })
 			},
 
 			addProduct: (e) => {
 				e.preventDefault();
 				const store = getStore();
 				store.product.id = uuidv4();
-				setStore([...store.productlist, store.productlist.push({
-					id: store.product.id, img: store.product.img, name: store.product.name, price: store.product.price
-				})])
+				setStore({productlist:[...store.productlist, {
+					id: store.product.id, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: store.product.name, price: store.product.price
+				}]})
 
 			},
 
@@ -78,13 +80,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loginUser: (params) => {
 				const store = getStore();
 				const client = {email:params.email, password:params.password};
-				setStore({currentuser:client})
+				setStore({currentuser:client});
 				setStore({auth:!store.auth})
 				
 			},
 
 			logoutUser: () => {
 				const store = getStore();
+				setStore({auth:!store.auth})
 
 			}
 

@@ -18,7 +18,7 @@ const FormAddProduct = () => {
                     <select 
                     className="custom-select" 
                     required
-                    name={store.category}
+                    name='category'
                     value={store.category} 
                     onChange={(e) => actions.handleChange_AddProduct(e)}
                     >
@@ -33,7 +33,7 @@ const FormAddProduct = () => {
                         type="text"
                         className="form-control"
                         required
-                        name={store.name}
+                        name='name'
                         value={store.name} 
                         onChange={(e) => actions.handleChange_AddProduct(e)}
                     />
@@ -45,7 +45,7 @@ const FormAddProduct = () => {
                         className="form-control"
                         min="1" max="100"
                         required
-                        name={store.quantity}
+                        name='quantity'
                         value={store.quantity} 
                         onChange={(e) => actions.handleChange_AddProduct(e)}
                     />
@@ -55,7 +55,7 @@ const FormAddProduct = () => {
                     <input
                         type="text"
                         className="form-control"
-                        name={store.price}
+                        name='price'
                         value={store.price} 
                         onChange={(e) => actions.handleChange_AddProduct(e)}
                         required />
@@ -67,7 +67,7 @@ const FormAddProduct = () => {
                     className="form-control"
                     id="exampleFormControlTextarea1"
                     rows="3"
-                    name={store.description}
+                    name='description'
                     value={store.description} 
                     onChange={(e) => actions.handleChange_AddProduct(e)}
                 ></textarea>
@@ -77,7 +77,7 @@ const FormAddProduct = () => {
                 <input
                     type="file"
                     className="form-control-file"
-                    name={store.img}
+                    name='img'
                     value={store.img}
                     onChange={(e) => actions.handleChange_AddProduct(e)}
                     required

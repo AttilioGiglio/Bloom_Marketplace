@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CheckoutStepOne from '../client_views/checkout/checkout_step_one';
 import CheckoutStepTwo from '../client_views/checkout/checkout_step_two'
@@ -20,10 +20,21 @@ import Blog from '../client_views/Blog';
 import AuthProvider from '../context/auth/auth_state';
 import AlertProvider from '../context/alert/alert_state';
 import PrivateRoutes from './private_routes';
-import injectContext from '../store/context';
+import injectContext, { Context } from '../store/context';
+
 
 
 const AppRouter = () => {
+    
+    const {store, actions} = useContext(Context)
+    
+    useEffect(() => {
+        if(store.auth===true){
+        const user = localStorage.getItem(JSON.parse('user'));
+        actions.loginUser(user);
+        }
+    })
+
     return (
 
         <AuthProvider>

@@ -36,8 +36,9 @@ const LoginClient = ({history}) => {
             return;
         }
         actions.loginUser(clientLogin)
-        localStorage.setItem('newuser', JSON.stringify(clientLogin))
         store.users.map(user => (user.email === clientLogin.email && store.auth) ? history.push('/') : showAlert('No se encuentra registrado','alert-error'))
+        localStorage.setItem('user', JSON.stringify(clientLogin))
+        localStorage.setItem('auth', JSON.stringify(store.auth))
         setClientLogin({
             email: '',
             password: '',
