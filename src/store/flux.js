@@ -38,7 +38,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					id: 'testID',
 					name: 'Test',
 					email: 'test@gmail.com',
-					password: 'test123'
+					password: 'test123',
+					role: null,
 				}
 			],
 
@@ -79,10 +80,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			loginUser: (params) => {
 				const store = getStore();
-				const client = {email:params.email, password:params.password};
-				setStore({currentuser:client});
-				setStore({auth:!store.auth})
-				
+				const user = {email:params.email, password:params.password, role:params.role};
+				setStore({currentuser: user});
+				setStore({auth:!store.auth})	
+				localStorage.setItem('user', JSON.stringify(user))
+				localStorage.setItem('auth', JSON.stringify(store.auth))
+			},
+
+			userDataPersistence: (userlocalstorage, authlocalstorage) => {
+				setStore({currentuser: userlocalstorage, auth:authlocalstorage})
+			},
+	
+			revalidate: (currentuser,auth) => { 
+				setStore({currentuser: currentuser, auth:auth})
 			},
 
 			logoutUser: () => {

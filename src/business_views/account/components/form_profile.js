@@ -4,7 +4,7 @@ import { AiOutlineEdit } from 'react-icons/ai';
 const FormProfile = () => {
     return (
         <div>
-            <form className='card p-4' style={{ margin: '50px auto 0', width: '80%', minHeight: '50vh' }}>
+            <form className='card p-4' style={{ margin: '50px auto 0', width: '80%', minHeight: '40vh' }}>
                 <fieldset>
                     <legend>Datos de cuenta</legend>
                     <div className="form-row">
@@ -14,29 +14,6 @@ const FormProfile = () => {
                         </div>
                         <div className="col-md-6 mb-3">
                             <label for="validationDefault01">Correo</label>
-                            <input type="text" className="form-control" id="validationDefault02" value="Otto" required />
-                        </div>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Datos personales</legend>
-                    <div className="form-row">
-                        <div className="col-md-6 mb-3">
-                            <label for="validationDefault02">Nombre y apellido</label>
-                            <input type="text" className="form-control" id="validationDefault01" value="Mark" required />
-                        </div>
-                        <div className="col-md-6 mb-3">
-                            <label for="validationDefault02">Rut</label>
-                            <input type="text" className="form-control" id="validationDefault02" value="Otto" required />
-                        </div>
-                    </div>
-                    <div className="form-row">
-                        <div className="col-md-6 mb-3">
-                            <label for="validationDefault02">Telefono</label>
-                            <input type="text" className="form-control" id="validationDefault01" value="Mark" required />
-                        </div>
-                        <div className="col-md-6 mb-3">
-                            <label for="validationDefault02">Domicilio</label>
                             <input type="text" className="form-control" id="validationDefault02" value="Otto" required />
                         </div>
                     </div>

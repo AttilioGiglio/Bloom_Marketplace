@@ -1,4 +1,4 @@
-import React, { useContext, useState} from 'react';
+import React, { useContext, useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../assets/images/Asset2.svg';
 import { RiUserAddLine } from 'react-icons/ri';
@@ -7,11 +7,13 @@ import './alert.scss'
 import { Context } from '../store/context';
 import AlertContext from '../context/alert/alert_context';
 
+
 const LoginClient = ({history}) => {
     
     const [clientLogin, setClientLogin] = useState({
         email: '',
-        password: ''
+        password: '',
+        role:'client'
     })
     
     const { alert, showAlert } = useContext(AlertContext);
@@ -19,6 +21,12 @@ const LoginClient = ({history}) => {
     const {email, password} = clientLogin;
 
     const {store, actions} = useContext(Context)
+
+    // useEffect(() => {
+    //     const user = localStorage.getItem('user');
+    //     const auth = localStorage.getItem('auth');
+    // }, [])
+
 
     const handleChange = (e) => {
         let value = e.target.value;
@@ -36,9 +44,9 @@ const LoginClient = ({history}) => {
             return;
         }
         actions.loginUser(clientLogin)
-        store.users.map(user => (user.email === clientLogin.email && store.auth) ? history.push('/') : showAlert('No se encuentra registrado','alert-error'))
-        localStorage.setItem('user', JSON.stringify(clientLogin))
-        localStorage.setItem('auth', JSON.stringify(store.auth))
+
+        store.users.map(user => (user.email === clientLogin.email && store.auth) ? history.push('/summary_business') : showAlert('No se encuentra registrado','alert-error'))
+
         setClientLogin({
             email: '',
             password: '',

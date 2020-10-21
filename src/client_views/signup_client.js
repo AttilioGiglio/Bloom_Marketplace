@@ -13,12 +13,13 @@ const SignupClient = ({ history }) => {
 
     const { alert, showAlert } = useContext(AlertContext);
 
-    const { actions } = useContext(Context)
+    const { store, actions } = useContext(Context)
 
     const [clientSignup, setClientSignup] = useState({
         name: '',
         email: '',
         password: '',
+        role:'client'
     })
 
     const { name, email, password } = clientSignup;
@@ -29,7 +30,7 @@ const SignupClient = ({ history }) => {
         setClientSignup({ ...clientSignup, [e.target.name]: value })
     }
 
-
+ 
     const onSubmit = (e) => {
         e.preventDefault();
         // validacion de campos vacios
@@ -44,7 +45,7 @@ const SignupClient = ({ history }) => {
 
         // pasarlo al action del context
         actions.registerUser(clientSignup);
-
+        
         setClientSignup({
             name: '',
             email: '',

@@ -17,51 +17,41 @@ import Profile from '../business_views/account/profile';
 import OrdersList from '../business_views/account/orders_list';
 import ProductCards from '../client_views/cards/product_cards';
 import Blog from '../client_views/Blog';
-import AuthProvider from '../context/auth/auth_state';
 import AlertProvider from '../context/alert/alert_state';
-import PrivateRoutes from './private_routes';
+import PrivateRoutesClient from './private_client_routes';
 import injectContext, { Context } from '../store/context';
+import PublicRoutes from './public_routes';
+import PrivateRoutesBusiness from './private_business_routes';
 
 
 
 const AppRouter = () => {
     
-    const {store, actions} = useContext(Context)
-    
-    useEffect(() => {
-        if(store.auth===true){
-        const user = localStorage.getItem(JSON.parse('user'));
-        actions.loginUser(user);
-        }
-    })
-
     return (
 
-        <AuthProvider>
                 <AlertProvider>
                     <Router>
                         <Switch>
-                            <Route exact path='/' component={HomeClient} />
-                            <Route exact path='/product_cards' component={ProductCards} />
-                            <Route exact path='/indoor_products' component={Indoor} />
-                            <Route exact path='/outdoor_proucts' component={Outdoor} />
-                            <Route exact path='/login_client' component={LoginClient} />
-                            <Route exact path='/signup_client' component={SignupClient} />
-                            <Route exact path='/business' component={HomeBusiness} />
-                            <Route exact path='/login_business' component={LoginBusiness} />
-                            <Route exact path='/signup_business' component={SignupBusiness} />
-                            <Route exact path='/checkout_step_one' component={CheckoutStepOne} />
-                            <Route exact path='/checkout_step_Two' component={CheckoutStepTwo} />
-                            <PrivateRoutes exact path='/blog_cards' component={Blog} />
-                            <Route exact path='/summary_business' component={Summary} />
-                            <Route exact path='/add_product_business' component={AddProduct} />
-                            <Route exact path='/orders_list_business' component={OrdersList} />
-                            <Route exact path='/products_list_business' component={ProductsList} />
-                            <Route exact path='/profile_business' component={Profile} />
+                            <PublicRoutes exact path='/' component={HomeClient} />
+                            <PublicRoutes exact path='/product_cards' component={ProductCards} />
+                            <PublicRoutes exact path='/indoor_products' component={Indoor} />
+                            <PublicRoutes exact path='/outdoor_proucts' component={Outdoor} />
+                            <PublicRoutes exact path='/login_client' component={LoginClient} />
+                            <PublicRoutes exact path='/signup_client' component={SignupClient} />
+                            <PublicRoutes exact path='/business' component={HomeBusiness} />
+                            <PublicRoutes exact path='/login_business' component={LoginBusiness} />
+                            <PublicRoutes exact path='/signup_business' component={SignupBusiness} />
+                            <PrivateRoutesClient exact path='/checkout_step_one' component={CheckoutStepOne} />
+                            <PrivateRoutesClient exact path='/checkout_step_Two' component={CheckoutStepTwo} />
+                            <PrivateRoutesClient exact path='/blog_cards' component={Blog} />
+                            <PrivateRoutesBusiness exact path='/summary_business' component={Summary} />
+                            <PrivateRoutesBusiness exact path='/add_product_business' component={AddProduct} />
+                            <PrivateRoutesBusiness exact path='/orders_list_business' component={OrdersList} />
+                            <PrivateRoutesBusiness exact path='/products_list_business' component={ProductsList} />
+                            <PrivateRoutesBusiness exact path='/profile_business' component={Profile} />
                         </Switch>
                     </Router>
                 </AlertProvider>
-        </AuthProvider>
 
     )
 }

@@ -39,9 +39,16 @@ const NavBar = () => {
                         <li className="nav-item mr-3">
                             <Link to='product_cards' className="nav-link active" style={{ textDecoration: 'none' }}>PRODUCTOS</Link>
                         </li>
+                        {
+                            (store.auth)
+                        
+                        ?
                         <li className="nav-item mr-3">
                             <Link to='/blog_cards' className="nav-link active" style={{ textDecoration: 'none' }}>BLOG</Link>
                         </li>
+                        :
+                        null
+                        }
                         <li className="nav-item mr-3">
                             <Link to='/business' className="nav-link active" style={{ textDecoration: 'none' }}>VENDE CON BLOOM!</Link>
                         </li>
