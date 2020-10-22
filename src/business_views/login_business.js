@@ -41,9 +41,7 @@ const LoginBusiness = ({history}) => {
             showAlert('La contraseña debe ser al menos de 6 caracteres', 'alert-error')
             return;
         }
-        actions.loginUser(businessLogin)
-
-        store.users.map(user => (user.email === businessLogin.email && store.auth && user.role === 'business') ? history.replace('/summary_business') : showAlert('No se encuentra registrado','alert-error'))
+        actions.loginUser(businessLogin, history, showAlert)
 
         setBusinessLogin({
             email: '',
@@ -91,10 +89,7 @@ const LoginBusiness = ({history}) => {
                                             onChange={handleChange}
                                         />
                                     </div>
-                                    <Link
-                                        to={'/summary_business'}>
                                         <button type="submit" className="btn my-2 px-3" style={{ background: '#6c63ff', border: 'solid #6c63ff', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '20px' }}>Iniciar Sesión</button>
-                                    </Link>
                                 </form>
                                 <Link
                                     to={'/signup_business'}

@@ -1,5 +1,6 @@
 import React from 'react';
 import AppRouter from './routers/app_routes';
+import injectContext from './store/context';
 
 
 // Agregar efecto de cambio de color a verde en navbar cuando se hace scroll
@@ -12,4 +13,4 @@ const App = () => {
     )
 }
 
-export default App;
+export default injectContext(App);

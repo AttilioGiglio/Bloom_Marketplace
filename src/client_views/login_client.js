@@ -43,9 +43,9 @@ const LoginClient = ({history}) => {
             showAlert('La contraseña debe ser al menos de 6 caracteres', 'alert-error')
             return;
         }
-        actions.loginUser(clientLogin)
+        actions.loginUser(clientLogin, history, showAlert)
 
-        store.users.map(user => (user.email === clientLogin.email && store.auth) ? history.push('/summary_business') : showAlert('No se encuentra registrado','alert-error'))
+        // store.users.map(user => (user.email === clientLogin.email && store.auth && user.role === 'client') ? history.push('/') : showAlert('No se encuentra registrado','alert-error'))
 
         setClientLogin({
             email: '',

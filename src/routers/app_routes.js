@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CheckoutStepOne from '../client_views/checkout/checkout_step_one';
 import CheckoutStepTwo from '../client_views/checkout/checkout_step_two'
@@ -19,7 +19,7 @@ import ProductCards from '../client_views/cards/product_cards';
 import Blog from '../client_views/Blog';
 import AlertProvider from '../context/alert/alert_state';
 import PrivateRoutesClient from './private_client_routes';
-import injectContext, { Context } from '../store/context';
+
 import PublicRoutes from './public_routes';
 import PrivateRoutesBusiness from './private_business_routes';
 
@@ -56,4 +56,4 @@ const AppRouter = () => {
     )
 }
 
-export default injectContext(AppRouter);
+export default AppRouter;

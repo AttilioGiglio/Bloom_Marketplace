@@ -78,11 +78,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore([...store.users, store.users.push(newuser)])
 			},
 
-			loginUser: (params) => {
+			loginUser: (params, history, showAlert) => {
 				const store = getStore();
 				const user = {email:params.email, password:params.password, role:params.role};
 				setStore({currentuser: user});
-				setStore({auth:!store.auth})	
+				setStore({auth:!store.auth});
+				const newPath = (params.role === "client") ? ("/") : ("/summary_business");
+				store.users.map(item=> (item.email === user.email) ? history.replace(newPath) : showAlert('No se encuentra registrado','alert-error'))	
 				localStorage.setItem('user', JSON.stringify(user))
 				localStorage.setItem('auth', JSON.stringify(store.auth))
 			},

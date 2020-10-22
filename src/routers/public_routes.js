@@ -6,9 +6,8 @@ const PublicRoutes = ({component: Component, ...others}) => {
     const { store } = useContext(Context);
     
     return (
-
         
-         <Route {...others} component={(props) => (!store.auth) ? (<Component {...props} />) : (<Redirect to="/" />)} />
+         <Route {...others} component={(props) => (<Component {...props} />) } />
         
 
     )
