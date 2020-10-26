@@ -72,11 +72,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore([...store.cart, store.cart.push(newitemCart)])
 			},
 
-			registerUser: (newuser) => {
+			registerUser: () => {
+				//To access to data from the store(obj), use getstore. You will use frequently to change the data stored.
 				const store = getStore();
-				newuser.id = uuidv4();
-				setStore([...store.users, store.users.push(newuser)])
+				const requestOptions = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(store.users)
+				};
+				fetch(REACT_APP_APIURL, requestOptions)
+					.then(response => response.json())
+					.then(data => setStore({ contacts: data }));
 			},
+
+			// registerUser: (newuser) => {
+			// 	const store = getStore();
+			// 	newuser.id = uuidv4();
+			// 	setStore([...store.users, store.users.push(newuser)])
+			// },
 
 			loginUser: (params, history, showAlert) => {
 				const store = getStore();
