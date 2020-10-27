@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { API } from './config';
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -33,15 +34,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			auth: false,
 
-			users: [
+			users:
 				{
-					id: 'testID',
-					name: 'Test',
-					email: 'test@gmail.com',
-					password: 'test123',
+					id: '',
+					name: '',
+					email: '',
+					password: '',
 					role: null,
 				}
-			],
+			,
+
+			errors: null,
 
 			currentuser: null,
 
@@ -51,7 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			handleChange_AddProduct: e => {
 				const store = getStore();
-				const {product} = store;
+				const { product } = store;
 				product[e.target.name] = e.target.value;
 				setStore({ product })
 			},
@@ -60,9 +63,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				e.preventDefault();
 				const store = getStore();
 				store.product.id = uuidv4();
-				setStore({productlist:[...store.productlist, {
-					id: store.product.id, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: store.product.name, price: store.product.price
-				}]})
+				setStore({
+					productlist: [...store.productlist, {
+						id: store.product.id, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: store.product.name, price: store.product.price
+					}]
+				})
 
 			},
 
@@ -72,17 +77,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore([...store.cart, store.cart.push(newitemCart)])
 			},
 
-			registerUser: () => {
-				//To access to data from the store(obj), use getstore. You will use frequently to change the data stored.
-				const store = getStore();
+			registerUser: (newuser) => {
 				const requestOptions = {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(store.users)
+					body: JSON.stringify(newuser)
 				};
-				fetch(REACT_APP_APIURL, requestOptions)
+				fetch(API.REGISTERCLIENT, requestOptions)
 					.then(response => response.json())
-					.then(data => setStore({ contacts: data }));
+					.then(data => setStore({ users: data }));
 			},
 
 			// registerUser: (newuser) => {
@@ -91,28 +94,77 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	setStore([...store.users, store.users.push(newuser)])
 			// },
 
-			loginUser: (params, history, showAlert) => {
-				const store = getStore();
-				const user = {email:params.email, password:params.password, role:params.role};
-				setStore({currentuser: user});
-				setStore({auth:!store.auth});
-				const newPath = (params.role === "client") ? ("/") : ("/summary_business");
-				store.users.map(item=> (item.email === user.email) ? history.replace(newPath) : showAlert('No se encuentra registrado','alert-error'))	
-				localStorage.setItem('user', JSON.stringify(user))
-				localStorage.setItem('auth', JSON.stringify(store.auth))
+			loginUser: (params) => {
+				const user = { email: params.email, password: params.password, role: params.role };
+				const requestOptions = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(user)
+				};
+				fetch(API.LOGINCLIENT, requestOptions)
+					.then(response => response.json())
+					.then(data => {setStore({ currentuser: data }); console.log(data)});
 			},
+			
+			
+			
+			// (params, history, showAlert) => {
+			// 	const store = getStore();
+			// 	const user = { email: params.email, password: params.password, role: params.role };
+			// 	const requestOptions = {
+			// 		method: "POST",
+			// 		headers: { "Content-Type": "application/json" },
+			// 		body: JSON.stringify({
+						
+			// 				"email":"test2@gmail.com", 
+			// 				"password":"TEST 2 SIGNUP CLIENT",
+			// 				"role":"client" 
+						
+			// 		})
+			// 	};
+			// 	fetch('http://localhost:5000/login_client', requestOptions)
+			// .then(response => { console.log(response.json())})
+			// 		.then(data => {
+			// 			console.log(data)	
+			// 			// data.msg
+			// 			// 	?
+			// 			// 	setStore({
+			// 			// 		errors: data
+			// 			// 	})
+			// 			// 	:
+			// 			// 	setStore({
+			// 			// 		currentUser: { data },
+			// 			// 		auth: !store.auth,
+			// 			// 	})
+			// 			// localStorage.setItem("currentUser", JSON.stringify(data))
+			// 			// localStorage.setItem("auth", JSON.stringify(store.auth))
+			// 			// const newPath = (params.role === "client") ? ("/") : ("/summary_business")
+			// 			// (store.users.email === user.email) ? history.replace(newPath) : showAlert('No se encuentra registrado', 'alert-error')
+			// 		} ).catch(error => console.log(error))
+		
+			// },
+			// loginUser: (params, history, showAlert) => {
+			// 	const store = getStore();
+			// 	const user = {email:params.email, password:params.password, role:params.role};
+			// 	setStore({currentuser: user});
+			// 	setStore({auth:!store.auth});
+			// 	const newPath = (params.role === "client") ? ("/") : ("/summary_business");
+			// 	store.users.map(item=> (item.email === user.email) ? history.replace(newPath) : showAlert('No se encuentra registrado','alert-error'))	
+			// 	localStorage.setItem('user', JSON.stringify(user))
+			// 	localStorage.setItem('auth', JSON.stringify(store.auth))
+			// },
 
 			userDataPersistence: (userlocalstorage, authlocalstorage) => {
-				setStore({currentuser: userlocalstorage, auth:authlocalstorage})
+				setStore({ currentuser: userlocalstorage, auth: authlocalstorage })
 			},
-	
-			revalidate: (currentuser,auth) => { 
-				setStore({currentuser: currentuser, auth:auth})
+
+			revalidate: (currentuser, auth) => {
+				setStore({ currentuser: currentuser, auth: auth })
 			},
 
 			logoutUser: () => {
 				const store = getStore();
-				setStore({auth:!store.auth})
+				setStore({ auth: !store.auth })
 
 			}
 

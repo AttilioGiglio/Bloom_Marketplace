@@ -13,7 +13,7 @@ const SignupClient = ({ history }) => {
 
     const { alert, showAlert } = useContext(AlertContext);
 
-    const { store, actions } = useContext(Context)
+    const { actions } = useContext(Context)
 
     const [clientSignup, setClientSignup] = useState({
         name: '',
