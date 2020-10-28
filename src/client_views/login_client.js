@@ -15,18 +15,12 @@ const LoginClient = ({history}) => {
         password: '',
         role:'client'
     })
-    
+
     const { alert, showAlert } = useContext(AlertContext);
 
-    const {email, password} = clientLogin;
+    const {email, password, role} = clientLogin;
 
     const {store, actions} = useContext(Context)
-
-    // useEffect(() => {
-    //     const user = localStorage.getItem('user');
-    //     const auth = localStorage.getItem('auth');
-    // }, [])
-
 
     const handleChange = (e) => {
         let value = e.target.value;
@@ -34,7 +28,7 @@ const LoginClient = ({history}) => {
         setClientLogin({...clientLogin, [e.target.name]: value})
     }
 
-    const loginSubmit = (e) => {
+    const loginSubmit = async(e) => {
         e.preventDefault();
         if ( email.trim() === '' || password.trim() === '') {
             showAlert('Todos los campos son obligatorios', 'alert-error')
@@ -43,9 +37,14 @@ const LoginClient = ({history}) => {
             showAlert('La contraseña debe ser al menos de 6 caracteres', 'alert-error')
             return;
         }
-        actions.loginUser(clientLogin, history, showAlert)
 
-        // store.users.map(user => (user.email === clientLogin.email && store.auth && user.role === 'client') ? history.push('/') : showAlert('No se encuentra registrado','alert-error'))
+        let success = await actions.loginClient(email, password, role);
+        if (success && store.token) {
+            localStorage.setItem('auth',store.token)
+            history.replace("/")
+        } else {
+            showAlert('No se encuentra registrado','alert-error')
+        }
 
         setClientLogin({
             email: '',

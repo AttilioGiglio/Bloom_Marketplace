@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BlogCards = ({ common_name, image_url }) => {
-    console.log(image_url)
+
     return (
         <div className='row d-flex justify-content-around'>
             <div className='d-inline-flex m-5'>

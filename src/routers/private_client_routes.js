@@ -1,17 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import {Context} from '../store/context';
+import { Context } from '../store/context';
 
 const PrivateRoutesClient = ({component: Component, ...others}) => {
-    const { store, actions } = useContext(Context);
-    
-    return (
-
+        const [client, setClient] = useState([]);
+        const { actions } = useContext(Context)
+        const authClient = async() => {
+            if(!localStorage.getItem('auth')) { return false }
+            const token = localStorage.getItem('auth');
+            const client = await actions.getClientByToken(token);
+            if (!client ) return false;
         
-         <Route {...others} component={(props) => (store.auth && store.currentuser.role === 'client') ? (<Component {...props} />) : (<Redirect to="/" />)} />
+            return {
+                'token':token,
+                'user':{
+                    'id': client.id,
+                    'firstname': client.firstname,
+                    'lastname': client.lastname,
+                    'email': client.email,
+                    'role': client.role,
+                    }
+            }
+        }
+        useEffect(() => {
+            authClient().then(response => { 
+                setClient(response);
+                return response
+            })
+        }, [])
         
+        return (
 
-    )
-}
+            <Route {...others} component={(props) => (client) ? (<Component {...props} />) : (<Redirect to="/" />)} />
+        )
+    }
 
 export default PrivateRoutesClient

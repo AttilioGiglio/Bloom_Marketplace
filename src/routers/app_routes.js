@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import CheckoutStepOne from '../client_views/checkout/checkout_step_one';
 import CheckoutStepTwo from '../client_views/checkout/checkout_step_two'
 import HomeClient from '../client_views/home_client';

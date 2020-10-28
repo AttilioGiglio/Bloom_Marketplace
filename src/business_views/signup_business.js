@@ -17,9 +17,7 @@ const SignupBusiness = ({ history }) => {
         name: '',
         email: '',
         password: '',
-        address: '',
-        business_legal_name: '',
-        business_id: '',
+        role:'business'
     })
 
     const { name, email, password, address, business_legal_name, business_id } = businessSignup;
@@ -34,7 +32,7 @@ const SignupBusiness = ({ history }) => {
     const onSubmit = (e) => {
         e.preventDefault();
         // validacion de campos vacios
-        if (name.trim() === '' || email.trim() === '' || password.trim() === '' || address.trim() === '' || business_legal_name.trim() === '' || business_id.trim() === '') {
+        if (name.trim() === '' || email.trim() === '' || password.trim() === '') {
             showAlert('Todos los campos son obligatorios', 'alert-error')
         }
         // validacion password min 6 caracteres
@@ -44,16 +42,12 @@ const SignupBusiness = ({ history }) => {
         }
 
         // pasarlo al action del context
-        actions.registerUser(businessSignup);
+        actions.registerSupplier(businessSignup);
 
         setBusinessSignup({
             name: '',
             email: '',
             password: '',
-            confirm: '',
-            address: '',
-            business_legal_name: '',
-            business_id: '',
             role:'business'
         })
 
@@ -92,7 +86,7 @@ const SignupBusiness = ({ history }) => {
                                             onChange={onChange}
                                         />
                                     </div>
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <label for="exampleInputEmail1">Rut Empresa</label>
                                         <input
                                             type="text"
@@ -124,7 +118,7 @@ const SignupBusiness = ({ history }) => {
                                             value={address}
                                             onChange={onChange}
                                         />
-                                    </div>
+                                    </div> */}
                                     <div className="form-group">
                                         <label for="exampleInputEmail1">Correo</label>
                                         <input

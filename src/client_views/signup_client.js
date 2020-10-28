@@ -44,7 +44,7 @@ const SignupClient = ({ history }) => {
         }
 
         // pasarlo al action del context
-        actions.registerUser(clientSignup);
+        actions.registerClient(clientSignup);
         
         setClientSignup({
             name: '',
@@ -52,8 +52,6 @@ const SignupClient = ({ history }) => {
             password: '',
             confirm: '',
         })
-        
-        history.push('/login_client');
     }
 
     return (

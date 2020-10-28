@@ -6,70 +6,69 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		store: {
 
-			product:
-			{
-				category: '',
+			product: {
 				name: '',
-				quantity: 0,
-				price: 0,
 				description: '',
-				img: '',
+				// img: '',
+				quantity: '',
+				price: '',
+				supplier_id: ''
 			},
 
-			productlist:
-				[
-					{ id: 1, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#1', price: 50000 },
-					{ id: 2, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#2', price: 20000 },
-					{ id: 3, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#3', price: 10000 },
-					{ id: 4, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#4', price: 30000 },
-					{ id: 5, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#5', price: 40000 },
-					{ id: 6, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#6', price: 20000 },
-					{ id: 7, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#7', price: 10000 },
-					{ id: 8, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#8', price: 50000 },
-					{ id: 9, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#9', price: 40000 },
-					{ id: 10, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: 'planta#10', price: 5000 },
-				],
+			productlist: [],
 
 			cart: [],
 
-			auth: false,
+			order: {
+				"total": 0,
+				"status": null,
+				"client_id": 0
+			},
 
-			users:
-				{
-					id: '',
-					name: '',
-					email: '',
-					password: '',
-					role: null,
-				}
-			,
+			productstock: 0,
+
+			client: {
+				id: 0,
+				name: '',
+				email: '',
+				password: '',
+				role: null,
+			},
+
+			supplier: {
+				id: 0,
+				name: '',
+				email: '',
+				password: '',
+				role: null,
+			},
 
 			errors: null,
 
-			currentuser: null,
+			token: null
 
 		},
 
 		actions: {
 
-			handleChange_AddProduct: e => {
-				const store = getStore();
-				const { product } = store;
-				product[e.target.name] = e.target.value;
-				setStore({ product })
-			},
+			// handleChange_AddProduct: e => {
+			// 	const store = getStore();
+			// 	const { product } = store;
+			// 	product[e.target.name] = e.target.value;
+			// 	setStore({ product })
+			// },
 
-			addProduct: (e) => {
-				e.preventDefault();
-				const store = getStore();
-				store.product.id = uuidv4();
-				setStore({
-					productlist: [...store.productlist, {
-						id: store.product.id, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: store.product.name, price: store.product.price
-					}]
-				})
+			// addProduct: (e) => {
+			// 	e.preventDefault();
+			// 	const store = getStore();
+			// 	store.product.id = uuidv4();
+			// 	setStore({
+			// 		productlist: [...store.productlist, {
+			// 			id: store.product.id, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: store.product.name, price: store.product.price
+			// 		}]
+			// 	})
 
-			},
+			// },
 
 			updateProductCart: (product) => {
 				const store = getStore();
@@ -77,7 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore([...store.cart, store.cart.push(newitemCart)])
 			},
 
-			registerUser: (newuser) => {
+			registerClient: (newuser) => {
 				const requestOptions = {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
@@ -85,88 +84,127 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				fetch(API.REGISTERCLIENT, requestOptions)
 					.then(response => response.json())
-					.then(data => setStore({ users: data }));
+					.then(data => data);
 			},
 
-			// registerUser: (newuser) => {
-			// 	const store = getStore();
-			// 	newuser.id = uuidv4();
-			// 	setStore([...store.users, store.users.push(newuser)])
-			// },
+			loginClient: async (email, password, role) => {
+				const response = await fetch(API.LOGINCLIENT, {
+					method: 'POST',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(
+						{
+							'email': email,
+							'password': password,
+							'role': role
+						}
+					)
+				});
+				const res = await response.json();
+				if (res.access_token) {
+					setStore({
+						token: res.access_token
+					});
+					return true;
+				}
+				return false;
+			},
 
-			loginUser: (params) => {
-				const user = { email: params.email, password: params.password, role: params.role };
+			getClientByToken: async (token) => {
+				const response = await fetch(API.TOKENCLIENT,
+					{
+						method: 'GET',
+						headers: {
+							Authorization: `Bearer ${token}`,
+						}
+					}
+				)
+				const res = response.json();
+				return await res;
+			},
+
+			logoutClient: () => {
+				setStore({ token: null })
+				localStorage.removeItem('auth');
+			},
+
+			registerSupplier: (newuser) => {
 				const requestOptions = {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(user)
+					body: JSON.stringify(newuser)
 				};
-				fetch(API.LOGINCLIENT, requestOptions)
+				fetch(API.REGISTERBUSINESS, requestOptions)
 					.then(response => response.json())
-					.then(data => {setStore({ currentuser: data }); console.log(data)});
-			},
-			
-			
-			
-			// (params, history, showAlert) => {
-			// 	const store = getStore();
-			// 	const user = { email: params.email, password: params.password, role: params.role };
-			// 	const requestOptions = {
-			// 		method: "POST",
-			// 		headers: { "Content-Type": "application/json" },
-			// 		body: JSON.stringify({
-						
-			// 				"email":"test2@gmail.com", 
-			// 				"password":"TEST 2 SIGNUP CLIENT",
-			// 				"role":"client" 
-						
-			// 		})
-			// 	};
-			// 	fetch('http://localhost:5000/login_client', requestOptions)
-			// .then(response => { console.log(response.json())})
-			// 		.then(data => {
-			// 			console.log(data)	
-			// 			// data.msg
-			// 			// 	?
-			// 			// 	setStore({
-			// 			// 		errors: data
-			// 			// 	})
-			// 			// 	:
-			// 			// 	setStore({
-			// 			// 		currentUser: { data },
-			// 			// 		auth: !store.auth,
-			// 			// 	})
-			// 			// localStorage.setItem("currentUser", JSON.stringify(data))
-			// 			// localStorage.setItem("auth", JSON.stringify(store.auth))
-			// 			// const newPath = (params.role === "client") ? ("/") : ("/summary_business")
-			// 			// (store.users.email === user.email) ? history.replace(newPath) : showAlert('No se encuentra registrado', 'alert-error')
-			// 		} ).catch(error => console.log(error))
-		
-			// },
-			// loginUser: (params, history, showAlert) => {
-			// 	const store = getStore();
-			// 	const user = {email:params.email, password:params.password, role:params.role};
-			// 	setStore({currentuser: user});
-			// 	setStore({auth:!store.auth});
-			// 	const newPath = (params.role === "client") ? ("/") : ("/summary_business");
-			// 	store.users.map(item=> (item.email === user.email) ? history.replace(newPath) : showAlert('No se encuentra registrado','alert-error'))	
-			// 	localStorage.setItem('user', JSON.stringify(user))
-			// 	localStorage.setItem('auth', JSON.stringify(store.auth))
-			// },
-
-			userDataPersistence: (userlocalstorage, authlocalstorage) => {
-				setStore({ currentuser: userlocalstorage, auth: authlocalstorage })
+					.then(data => data);
 			},
 
-			revalidate: (currentuser, auth) => {
-				setStore({ currentuser: currentuser, auth: auth })
+			loginSupplier: async (email, password, role) => {
+				const response = await fetch(API.LOGINBUSINESS, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(
+						{
+							'email': email,
+							'password': password,
+							'role': role
+						}
+					)
+				});
+				const res = await response.json();
+				if (res.access_token) {
+					setStore({
+						token: res.access_token
+					});
+					return true;
+				}
+				return false;
 			},
 
-			logoutUser: () => {
-				const store = getStore();
-				setStore({ auth: !store.auth })
+			getSupplierByToken: async (token) => {
+				const response = await fetch(API.TOKENBUSINESS,
+					{
+						method: 'GET',
+						headers: {
+							Authorization: `Bearer ${token}`,
+						}
+					}
+				)
+				const res = response.json();
+				return await res;
+			},
 
-			}
+			logoutSupplier: () => {
+				setStore({ token: null })
+				localStorage.removeItem('authbusiness');
+			},
+
+			createProduct: async (data) => {
+				const response = await fetch(API.POSTPRODUCT, {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json',
+					},
+
+				});
+				const res = response.json();
+				console.log(res);
+				return await res;
+				// Hola soy una planta my hermosa porfavor comprame, baby!!
+			},
+
+			getProducts: async () => {
+				const response = await fetch(API.GETALLPRODUCT);
+				const res = response.json();
+				return await res;
+			},
+
 
 		}
 	}

@@ -16,15 +16,9 @@ const LoginBusiness = ({history}) => {
     
     const { alert, showAlert } = useContext(AlertContext);
 
-    const {email, password} = businessLogin;
+    const { email, password, role } = businessLogin;
 
-    const {store, actions} = useContext(Context)
-
-    // useEffect(() => {
-    //     const user = localStorage.getItem('user');
-    //     const auth = localStorage.getItem('auth');
-    // }, [])
-
+    const { store, actions } = useContext(Context)
 
     const handleChange = (e) => {
         let value = e.target.value;
@@ -32,17 +26,28 @@ const LoginBusiness = ({history}) => {
         setBusinessLogin({...businessLogin, [e.target.name]: value})
     }
 
-    const loginSubmit = (e) => {
+    const loginSubmit = async(e) => {
         e.preventDefault();
-        if ( email.trim() === '' || password.trim() === '') {
+
+         // validacion de campos vacios
+         if ( email.trim() === '' || password.trim() === '') {
             showAlert('Todos los campos son obligatorios', 'alert-error')
         }
+        // validacion password min 6 caracteres
         if (password.length < 6) {
             showAlert('La contraseña debe ser al menos de 6 caracteres', 'alert-error')
             return;
         }
-        actions.loginUser(businessLogin, history, showAlert)
-
+        
+        let success = await actions.loginSupplier(email, password, role);
+        
+        if (success && store.token) {
+            localStorage.setItem('authbusiness',store.token);
+            history.replace("/summary_business")
+        } else {
+            showAlert('No se encuentra registrado','alert-error')
+        }
+        
         setBusinessLogin({
             email: '',
             password: '',

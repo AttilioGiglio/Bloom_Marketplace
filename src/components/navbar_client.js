@@ -10,7 +10,7 @@ const NavBar = () => {
 
     const [toggle, setToggle] = useState(false);
 
-    const {store, actions} = useContext(Context)
+    const { actions} = useContext(Context)
 
     return (
         <div className='navBar client'>
@@ -40,7 +40,7 @@ const NavBar = () => {
                             <Link to='product_cards' className="nav-link active" style={{ textDecoration: 'none' }}>PRODUCTOS</Link>
                         </li>
                         {
-                            (store.auth)
+                            (localStorage.getItem('auth'))
                         
                         ?
                         <li className="nav-item mr-3">
@@ -53,10 +53,10 @@ const NavBar = () => {
                             <Link to='/business' className="nav-link active" style={{ textDecoration: 'none' }}>VENDE CON BLOOM!</Link>
                         </li>
                         {
-                            (store.auth)
+                            (localStorage.getItem('auth'))
                         
                         ?
-                        <li className="nav-item mr-3" onClick={actions.logoutUser}>
+                        <li className="nav-item mr-3" onClick={actions.logoutClient}>
                             <Link to='/' className="nav-link active" style={{ textDecoration: 'none' }}>CERRAR SESIÓN</Link>
                         </li>
                         :

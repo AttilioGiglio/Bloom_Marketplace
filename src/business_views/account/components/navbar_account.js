@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ReactComponent as ReactLogo } from '../../../assets/images/programador.svg';
 import { GoSearch } from 'react-icons/go';
 import { Link } from 'react-router-dom';
+import { Context } from '../../../store/context';
 
 const NavbarAccount = () => {
+    const { actions} = useContext(Context)
     return (
         <nav className="navbar navbar-expand-lg" style={{ borderBottom: 'solid 2px #479A79' }}>
             <div className='container-fluid'>
@@ -28,7 +30,7 @@ const NavbarAccount = () => {
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <Link to='/profile_business' className="dropdown-item" href="#"><span style={{ color: '#479A79' }}>Mi Perfil</span></Link>
                                 <div className="dropdown-divider"></div>
-                                <Link to='/business' className="dropdown-item" href="#"><span style={{ color: '#479A79' }}>Cerrar Sesión</span></Link>
+                                <Link to='/business' className="dropdown-item" href="#"><span style={{ color: '#479A79' }} onClick={actions.logoutSupplier}>Cerrar Sesión</span></Link>
                             </div>
                         </li>
                     </ul>
