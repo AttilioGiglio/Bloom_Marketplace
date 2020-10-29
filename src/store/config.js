@@ -11,8 +11,8 @@ export const API = {
     GETPROFILEBUSINESS: `${urlBackend}/profile_business/`, //<id>
     POSTPRODUCT: `${urlBackend}/add_product_business/`,
     GETALLPRODUCT: `${urlBackend}/product_cards`,
-    CHECKOUT: `${urlBackend}/checkout_step_one`,
-    POSTORDER: `${urlBackend}/orders_list_business`,
+    POSTORDER: `${urlBackend}/checkout_step_one`,
+    GETALLORDERBYSUPPLIER: `${urlBackend}/orders_list_business`,
     GETPRODUCTSPERORDER: `${urlBackend}/products_list_business/`, //<id>
     SUMMARYBUSINES: `${urlBackend}/summary_business/` //<id>
 }

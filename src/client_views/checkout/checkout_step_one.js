@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './checkout.scss';
 import CheckoutItem from './checkout_item';
@@ -8,7 +8,14 @@ import {Context} from '../../store/context'
 
 const CheckoutStepOne = () => {
 
-    const { store } = useContext(Context);
+    const [state,setState] = useState(false)
+
+    // const { store } = useContext(Context);
+    let cart = JSON.parse(sessionStorage.getItem('cartlist'))
+
+    const { actions } = useContext(Context)
+    
+    const total = cart.reduce((acc, product) => acc + product.price, 0)
 
     return (
         <div className='d-flex'>
@@ -25,13 +32,15 @@ const CheckoutStepOne = () => {
                         <th>Precio</th>
                         <th>Eliminar</th>
                     </tr>
-</thead>
+                </thead>
                     <CheckoutItem
-                        cart={store.cart}
+                        cart={cart}
+                        state={state}
+                        setState={setState}
                     />
                 </table>
                 <div className='total'>
-                    <span>Total: ${store.cart.reduce((acc, product) => acc + product.price, 0)}</span>
+                    <span>Total: $<div onClick={() => actions.createOrder(total, )}>{total}</div></span>
                 </div>
                 <div className='total'>
                     <Link to='/checkout_step_two'>

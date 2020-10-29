@@ -3,11 +3,12 @@ import { IoMdAddCircleOutline } from 'react-icons/io';
 import { Context } from '../../../store/context';
 import AlertContext from '../../../context/alert/alert_context';
 import '../../../client_views/alert.scss'
+import { useParams } from 'react-router-dom';
 
-const FormAddProduct = ({ match }) => {
+const FormAddProduct = () => {
     
-    const id_supplier = match.params.id;
-    
+    const {id} = useParams()
+    console.log(id)
     const { actions } = useContext(Context)
 
     const { alert, showAlert } = useContext(AlertContext);
@@ -41,7 +42,7 @@ const FormAddProduct = ({ match }) => {
         }
 
         // pasarlo al action del context
-        actions.createProduct(name, quantity, price, description,)
+        actions.createProduct(name, quantity, price, description, id)
 
         setProduct({
             name: '',

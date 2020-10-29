@@ -21,9 +21,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cart: [],
 
 			order: {
-				"total": 0,
-				"status": null,
-				"client_id": 0
+				order_number: 0,
+				client_id:0,
+				client_name:'',
+				total:0,
+				date:'',
+				products:[
+					{
+						sku_id:0,
+						name:'',
+						description:'',
+						quantity:0,
+						price:0
+					}
+				]
 			},
 
 			productstock: 0,
@@ -40,6 +51,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				name: '',
 				email: '',
 				role: null,
+			},
+
+			information:{
+				business_legal_name: '', 
+    			business_id: '',
+    			card_name: 0,
+    			card_number: 0,
+    			cvv: 0,
+    			month: 0,
+    			year:  0,
+    			address: '', 
+    			comuna: '',
+    			region: '',
 			},
 
 			errors: null,
@@ -69,11 +93,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// },
 
-			updateProductCart: (product) => {
-				const store = getStore();
-				const newitemCart = { id: product.id, img: product.img, name: product.name, price: product.price }
-				setStore([...store.cart, store.cart.push(newitemCart)])
-			},
 
 			registerClient: (newuser) => {
 				const requestOptions = {
@@ -206,47 +225,108 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			createProduct: async (name, quantity, price, description, id_supplier) => {
-				const store = getStore();	
-				const response = await fetch(API.POSTPRODUCT + '/' + id_supplier, {
+				const response = await fetch(API.POSTPRODUCT + id_supplier, {
 					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
 					body: JSON.stringify({
 						'name':name,
 						'quantity':quantity,
 						'price':price,
 						'description':description,
-						'supplier_id': store.supplier.id
 					}),
-					headers: {
-						'Content-Type': 'application/json',
-					},
 
 				});
 				const res =  await response.json();
-				return await res
+				return res
+			},
+			
+			getAllProducts: async () => {
+				const response = await fetch(API.GETALLPRODUCT);
+				const res = await response.json();
+				if (res) {
+					setStore({productlist:res});
+					return true;
+				}
+				return false;
 			},
 
-			// getProducts: async () => {
-			// 	const response = await fetch(API.GETALLPRODUCT);
-			// 	const res = await response.json();
-			// 	if (res.product) {
-			// 		setStore({
-			// 			supplier: {
-			// 				"id": res.product.id,
-			// 				"name": res.product.name,
-			// 				"sku_id": res.product.sku_id,
-			// 				"description": res.product.description,
-			// 				"quantity": res.product.quantity,
-			// 				"price": res.product.price,
-			// 				"date": res.product.date
-			// 				// img: '',
-			// 			}
-			// 		});
-			// 		return true;
-			// 	}
-			// 	return false;
+			updateProductCart: (product) => {
+				const store = getStore();
+				const newitemCart = { id: product.id, img: product.img, name: product.name, price: product.price }
+				setStore([...store.cart, store.cart.push(newitemCart)])
+				sessionStorage.setItem("cartlist", JSON.stringify(store.cart))
+			},
+
+			createOrder: async (total, client_id) => {
+				const response = await fetch(API.POSTORDER + client_id, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						'total':total,
+				}),
+			});
+				const res =  await response.json();
+				return res
+			},
+
+			getAllOrders: async (total, client_id) => {
+				const response = await fetch(API.POSTORDER + client_id, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						'total':total,
+				}),
+			});
+				const res =  await response.json();
+				return res
+			},
+			
+			// getAllProductByOrder: async (total, client_id) => {
+			// 	const response = await fetch(API.POSTORDER + client_id, {
+			// 		method: 'POST',
+			// 		headers: {
+			// 			'Content-Type': 'application/json',
+			// 		},
+			// 		body: JSON.stringify({
+			// 			'total':total,
+			// 	}),
+			// });
+			// 	const res =  await response.json();
+			// 	return res
 			// },
 
-
+			// postPutFullInfoSupplier: async (total, client_id) => {
+			// 	const response = await fetch(API.POSTORDER + client_id, {
+			// 		method: 'POST',
+			// 		headers: {
+			// 			'Content-Type': 'application/json',
+			// 		},
+			// 		body: JSON.stringify({
+			// 			'total':total,
+			// 	}),
+			// });
+			// 	const res =  await response.json();
+			// 	return res
+			// },
+			// getSummaryInfoSupplier: async (total, client_id) => {
+			// 	const response = await fetch(API.POSTORDER + client_id, {
+			// 		method: 'POST',
+			// 		headers: {
+			// 			'Content-Type': 'application/json',
+			// 		},
+			// 		body: JSON.stringify({
+			// 			'total':total,
+			// 	}),
+			// });
+			// 	const res =  await response.json();
+			// 	return res
+			// },
 		}
 	}
 
