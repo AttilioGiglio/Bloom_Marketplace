@@ -4,9 +4,11 @@ import { Context } from '../../../store/context';
 import AlertContext from '../../../context/alert/alert_context';
 import '../../../client_views/alert.scss'
 
-const FormAddProduct = () => {
-
-    const {store, actions} = useContext(Context)
+const FormAddProduct = ({ match }) => {
+    
+    const id_supplier = match.params.id;
+    
+    const { actions } = useContext(Context)
 
     const { alert, showAlert } = useContext(AlertContext);
 
@@ -39,7 +41,7 @@ const FormAddProduct = () => {
         }
 
         // pasarlo al action del context
-        actions.createProduct(product);
+        actions.createProduct(name, quantity, price, description,)
 
         setProduct({
             name: '',

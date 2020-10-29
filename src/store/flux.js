@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { API } from './config';
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -7,12 +6,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 
 			product: {
+				id:'',
 				name: '',
+				sku_id:'',
 				description: '',
-				// img: '',
 				quantity: '',
 				price: '',
-				supplier_id: ''
+				date:''
+				// img: '',
 			},
 
 			productlist: [],
@@ -31,7 +32,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				id: 0,
 				name: '',
 				email: '',
-				password: '',
 				role: null,
 			},
 
@@ -39,7 +39,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				id: 0,
 				name: '',
 				email: '',
-				password: '',
 				role: null,
 			},
 
@@ -121,8 +120,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					}
 				)
-				const res = response.json();
-				return await res;
+				const res = await response.json();
+				console.log(res)
+				if (res) {
+					setStore({
+						client: {
+							'id': res.id,
+							'name':res.name,
+            				'email': res.email,
+            				'role': res.role
+						}
+					});
+					return true;
+				}
+				return res;
 			},
 
 			logoutClient: () => {
@@ -174,8 +185,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					}
 				)
-				const res = response.json();
-				return await res;
+				const res = await response.json();
+				if (res) {
+					setStore({
+						supplier: {
+							'id': res.id,
+							'name':res.name,
+            				'email': res.email,
+            				'role': res.role
+						}
+					});
+					return true;
+				}
+				return res;
 			},
 
 			logoutSupplier: () => {
@@ -183,27 +205,46 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem('authbusiness');
 			},
 
-			createProduct: async (data) => {
-				const response = await fetch(API.POSTPRODUCT, {
+			createProduct: async (name, quantity, price, description, id_supplier) => {
+				const store = getStore();	
+				const response = await fetch(API.POSTPRODUCT + '/' + id_supplier, {
 					method: 'POST',
-					body: JSON.stringify(data),
+					body: JSON.stringify({
+						'name':name,
+						'quantity':quantity,
+						'price':price,
+						'description':description,
+						'supplier_id': store.supplier.id
+					}),
 					headers: {
-						'Accept': 'application/json',
 						'Content-Type': 'application/json',
 					},
 
 				});
-				const res = response.json();
-				console.log(res);
-				return await res;
-				// Hola soy una planta my hermosa porfavor comprame, baby!!
+				const res =  await response.json();
+				return await res
 			},
 
-			getProducts: async () => {
-				const response = await fetch(API.GETALLPRODUCT);
-				const res = response.json();
-				return await res;
-			},
+			// getProducts: async () => {
+			// 	const response = await fetch(API.GETALLPRODUCT);
+			// 	const res = await response.json();
+			// 	if (res.product) {
+			// 		setStore({
+			// 			supplier: {
+			// 				"id": res.product.id,
+			// 				"name": res.product.name,
+			// 				"sku_id": res.product.sku_id,
+			// 				"description": res.product.description,
+			// 				"quantity": res.product.quantity,
+			// 				"price": res.product.price,
+			// 				"date": res.product.date
+			// 				// img: '',
+			// 			}
+			// 		});
+			// 		return true;
+			// 	}
+			// 	return false;
+			// },
 
 
 		}

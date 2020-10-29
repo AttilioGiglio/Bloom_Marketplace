@@ -45,7 +45,7 @@ const AppRouter = () => {
                             <PrivateRoutesClient exact path='/checkout_step_Two' component={CheckoutStepTwo} />
                             <PrivateRoutesClient exact path='/blog_cards' component={Blog} />
                             <PrivateRoutesBusiness exact path='/summary_business' component={Summary} />
-                            <PrivateRoutesBusiness exact path='/add_product_business' component={AddProduct} />
+                            <PrivateRoutesBusiness exact path='/add_product_business/:id' component={AddProduct} />
                             <PrivateRoutesBusiness exact path='/orders_list_business' component={OrdersList} />
                             <PrivateRoutesBusiness exact path='/products_list_business' component={ProductsList} />
                             <PrivateRoutesBusiness exact path='/profile_business' component={Profile} />

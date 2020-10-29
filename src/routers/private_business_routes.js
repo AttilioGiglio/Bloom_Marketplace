@@ -15,8 +15,7 @@ const PrivateRoutesClient = ({component: Component, ...others}) => {
                 'token':token,
                 'user':{
                     'id': business.id,
-                    'firstname': business.firstname,
-                    'lastname': business.lastname,
+                    'name': business.name,
                     'email': business.email,
                     'role': business.role,
                     }

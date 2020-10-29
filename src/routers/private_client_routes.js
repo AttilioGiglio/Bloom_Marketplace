@@ -9,14 +9,14 @@ const PrivateRoutesClient = ({component: Component, ...others}) => {
             if(!localStorage.getItem('auth')) { return false }
             const token = localStorage.getItem('auth');
             const client = await actions.getClientByToken(token);
+            console.log(token)
             if (!client ) return false;
         
             return {
                 'token':token,
                 'user':{
                     'id': client.id,
-                    'firstname': client.firstname,
-                    'lastname': client.lastname,
+                    'name': client.name,
                     'email': client.email,
                     'role': client.role,
                     }

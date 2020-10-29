@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
 import { MdControlPoint } from 'react-icons/md';
 import { RiFileList2Line } from 'react-icons/ri';
 import { AiOutlineBarChart } from 'react-icons/ai';
 import { BiCog } from 'react-icons/bi';
+import { Context } from '../../../store/context'
 
 const Sidebar = () => {
+   const { store } = useContext(Context) 
     return (
         
 
@@ -19,7 +21,7 @@ const Sidebar = () => {
                             <AiOutlineBarChart className='mb-1' style={{ fontSize: '26px' }} /> Resumen </Link>
                         <Link to={'/orders_list_business'} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-apps lead mr-2"></i>
                             <RiFileList2Line className='mb-1' /> Lista de Ordenes</Link>
-                        <Link to={'/add_product_business'} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-people lead mr-2"></i>
+                        <Link to={'/add_product_business/'+store.supplier.id} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-people lead mr-2"></i>
                             <MdControlPoint className='mb-1' /> Agregar Producto</Link>
                         <Link to={'/profile_business'} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-people lead mr-2"></i>
                             <BiCog /> Configuración</Link>
