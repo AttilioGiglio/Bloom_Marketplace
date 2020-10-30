@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import './navbar_client.scss';
 import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
+import { BsChatDots } from 'react-icons/bs';
 import Cart from './cart/cart';
 import CartDropdown from './cart/cart_dropdown';
 import { Context } from '../store/context';
@@ -69,7 +70,7 @@ const NavBar = () => {
                         </li>
                         </>
                         }
-                        <li className="nav-item" onClick={() => setToggle(!toggle) }>
+                        <li className="nav-item ml-2" onClick={() => setToggle(!toggle) }>
                             <Cart/>
                             </li>
                             {
@@ -79,7 +80,16 @@ const NavBar = () => {
                                     :
                                     null
                             }
-
+                            {
+                            (localStorage.getItem('auth'))
+                        
+                        ?
+                        <li className="nav-item ml-4">
+                            <Link to='/chat' className="nav-link active ml-3 p-0 m-0 d-flex" style={{ textDecoration: 'none', fontSize:'36px', position: 'relative', alignItems:'center' }}><BsChatDots/></Link>
+                        </li>
+                        :
+                        null
+                        }
                     </ul>
                 </div>
             </nav>

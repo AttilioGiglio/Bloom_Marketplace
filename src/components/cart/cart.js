@@ -7,7 +7,9 @@ const Cart = () => {
     return (
         <div className='cart-icon pb-4'>
             <ShoppingIcon className='shopping-icon'/>
-            <span className='item-count'>{cart.length}</span>
+            {cart !== null && 
+                <span className='item-count'>{cart.length}</span>      
+            }
         </div>
     )
 }

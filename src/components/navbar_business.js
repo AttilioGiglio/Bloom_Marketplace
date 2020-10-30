@@ -2,6 +2,7 @@ import React from 'react';
 import './navbar_business.scss';
 import { Link } from 'react-router-dom';
 import { RiPlantLine } from 'react-icons/ri';
+import { BsChatDots } from 'react-icons/bs';
 
 const NavBar = () => {
     return (
@@ -24,6 +25,9 @@ const NavBar = () => {
                             </li>
                             <li className="nav-item mr-3">
                                 <Link to='/login_business' className="nav-link active" style={{ textDecoration: 'none' }}>INICIAR SESIÓN</Link>
+                            </li>
+                            <li className="nav-item ml-3">
+                                <Link to='/chat' className="nav-link active p-0 m-0 d-flex" style={{ textDecoration: 'none', fontSize: '36px', position: 'relative', alignItems: 'center' }}><BsChatDots /></Link>
                             </li>
                         </ul>
                     </div>

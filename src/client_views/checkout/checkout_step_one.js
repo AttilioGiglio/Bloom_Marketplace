@@ -9,19 +9,14 @@ import {Context} from '../../store/context'
 const CheckoutStepOne = () => {
 
     const {id} = useParams()
-    console.log(id)
+    
     const [state,setState] = useState(false)
 
-    // const { store } = useContext(Context);
     let cart = JSON.parse(sessionStorage.getItem('cartlist'))
 
     const { actions } = useContext(Context)
     
     const total = cart.reduce((acc, product) => acc + product.price, 0)
-    
-    // cart.map(item => parameter.push(item.id))
-
-    // let parameter = []
 
     return (
         <div className='d-flex'>

@@ -19,7 +19,7 @@ const Sidebar = () => {
                     <div className="menu">
                         <Link to={'/summary_business'} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-apps lead mr-2"></i>
                             <AiOutlineBarChart className='mb-1' style={{ fontSize: '26px' }} /> Resumen </Link>
-                        <Link to={'/orders_list_business'} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-apps lead mr-2"></i>
+                        <Link to={'/orders_list_business/'+store.supplier.id} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-apps lead mr-2"></i>
                             <RiFileList2Line className='mb-1' /> Lista de Ordenes</Link>
                         <Link to={'/add_product_business/'+store.supplier.id} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-people lead mr-2"></i>
                             <MdControlPoint className='mb-1' /> Agregar Producto</Link>

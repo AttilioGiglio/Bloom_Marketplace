@@ -10,8 +10,7 @@ const ProductCards = () => {
     return (
         <Fragment>
             <NavBar />
-            <div className='row d-flex justify-content-around'>
-                <div className='col-12 d-flex justify-content-around mt-5 mx-0 p-0'>
+                <div className='row d-flex justify-content-center mt-3 mx-0 p-0'>
                     {store.productlist.map(product => (
                         <CardProduct
                             key={product.id}
@@ -20,7 +19,6 @@ const ProductCards = () => {
                     ))
                     }
                 </div>
-            </div>
         </Fragment>
     )
 

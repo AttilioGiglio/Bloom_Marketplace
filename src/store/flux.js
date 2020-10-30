@@ -1,6 +1,6 @@
 import { API } from './config';
 
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getStore, setStore }) => {
 	return {
 
 		store: {
@@ -16,13 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// img: '',
 			},
 
-			productlist: [],
-
 			cart: [],
-
-			orderlist: [],
-
-			productlistbyorder:[],
 
 			productstock: 0,
 
@@ -62,26 +56,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 
 		actions: {
-
-			// handleChange_AddProduct: e => {
-			// 	const store = getStore();
-			// 	const { product } = store;
-			// 	product[e.target.name] = e.target.value;
-			// 	setStore({ product })
-			// },
-
-			// addProduct: (e) => {
-			// 	e.preventDefault();
-			// 	const store = getStore();
-			// 	store.product.id = uuidv4();
-			// 	setStore({
-			// 		productlist: [...store.productlist, {
-			// 			id: store.product.id, img: 'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG', name: store.product.name, price: store.product.price
-			// 		}]
-			// 	})
-
-			// },
-
 
 			registerClient: (newuser) => {
 				const requestOptions = {
@@ -249,7 +223,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			createOrder: async (total, client_id) => {
-				console.log(client_id)
+				let memory = JSON.parse(sessionStorage.getItem('cartlist'));
+				console.log(memory)
 				const response = await fetch(API.POSTORDER + client_id, {
 					method: 'POST',
 					headers: {
@@ -267,21 +242,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getAllOrders: async (supplier_id) => {
 				const response = await fetch(API.GETALLORDERBYSUPPLIER + supplier_id);
 				const res = await response.json();
-				if (res) {
-					setStore({orderlist:res});
-					return true;
-				}
-				return false;
+				return res
 			},
 
 			getAllProductByOrder:  async (order_id) => {
-				const response = await fetch(API.GETALLORDERBYSUPPLIER + order_id);
+				const response = await fetch(API.GETPRODUCTSPERORDER + order_id);
 				const res = await response.json();
-				if (res) {
-					setStore({productlistbyorder:res});
-					return true;
-				}
-				return false;
+				return res
 			},
 
 			// postPutFullInfoSupplier: async (total, client_id) => {

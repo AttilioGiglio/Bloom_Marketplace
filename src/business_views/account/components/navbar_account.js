@@ -25,7 +25,7 @@ const NavbarAccount = () => {
                         <li className="nav-item dropdown">
                             <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <ReactLogo className='mr-2 rounded-circle avatar' />
-                                <span style={{ color: '#479A79' }}>Attilio Giglio</span>
+                                <span style={{fontSize:'20px', color: '#479A79' }}>Attilio Giglio</span>
                             </div>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <Link to='/profile_business' className="dropdown-item" href="#"><span style={{ color: '#479A79' }}>Mi Perfil</span></Link>

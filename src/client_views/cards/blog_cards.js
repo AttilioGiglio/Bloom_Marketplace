@@ -3,10 +3,10 @@ import React from 'react';
 const BlogCards = ({ common_name, image_url }) => {
 
     return (
-        <div className='row d-flex justify-content-around'>
+        <div className='col-3 d-flex justify-content-center'>
             <div className='d-inline-flex m-5'>
-                <div className="card" style={{ width: '18rem' }}>
-                    <img className="card-img-top" src={image_url} alt="Card" />
+                <div className="card" style={{ width: '23rem' }}>
+                    <img className="card-img-top" style={{ height: '30rem' }} src={image_url} alt="Card" />
                     <div className="card-body">
 
                         <h5 className="card-title">{common_name}</h5>

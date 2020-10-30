@@ -9,7 +9,7 @@ import { Context } from '../store/context';
 
 
 
-const SignupClient = ({ history }) => {
+const SignupClient = () => {
 
     const { alert, showAlert } = useContext(AlertContext);
 

@@ -19,7 +19,7 @@ import ProductCards from '../client_views/cards/product_cards';
 import Blog from '../client_views/Blog';
 import AlertProvider from '../context/alert/alert_state';
 import PrivateRoutesClient from './private_client_routes';
-
+import ChatApp from '../chat/chat_app';
 import PublicRoutes from './public_routes';
 import PrivateRoutesBusiness from './private_business_routes';
 
@@ -41,13 +41,14 @@ const AppRouter = () => {
                             <PublicRoutes exact path='/business' component={HomeBusiness} />
                             <PublicRoutes exact path='/login_business' component={LoginBusiness} />
                             <PublicRoutes exact path='/signup_business' component={SignupBusiness} />
+                            <PrivateRoutesClient exact path='/chat' component={ChatApp} />
                             <PrivateRoutesClient exact path='/checkout_step_one/:id' component={CheckoutStepOne} />
                             <PrivateRoutesClient exact path='/checkout_step_Two' component={CheckoutStepTwo} />
                             <PrivateRoutesClient exact path='/blog_cards' component={Blog} />
                             <PrivateRoutesBusiness exact path='/summary_business' component={Summary} />
                             <PrivateRoutesBusiness exact path='/add_product_business/:id' component={AddProduct} />
-                            <PrivateRoutesBusiness exact path='/orders_list_business' component={OrdersList} />
-                            <PrivateRoutesBusiness exact path='/products_list_business' component={ProductsList} />
+                            <PrivateRoutesBusiness exact path='/orders_list_business/:id' component={OrdersList} />
+                            <PrivateRoutesBusiness exact path='/products_list_business/:id' component={ProductsList} />
                             <PrivateRoutesBusiness exact path='/profile_business' component={Profile} />
                         </Switch>
                     </Router>

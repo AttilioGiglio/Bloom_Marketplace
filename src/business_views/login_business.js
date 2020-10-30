@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect} from 'react';
+import React, { useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../assets/images/undraw_Login_re_4vu2.svg';
 import { RiUserAddLine } from 'react-icons/ri';
@@ -94,7 +94,10 @@ const LoginBusiness = ({history}) => {
                                             onChange={handleChange}
                                         />
                                     </div>
-                                        <button type="submit" className="btn my-2 px-3" style={{ background: '#6c63ff', border: 'solid #6c63ff', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '20px' }}>Iniciar Sesión</button>
+                                        <button 
+                                        type="submit" 
+                                        className="btn my-2 px-3" 
+                                        style={{ background: '#6c63ff', border: 'solid #6c63ff', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '20px' }}>Iniciar Sesión</button>
                                 </form>
                                 <Link
                                     to={'/signup_business'}
