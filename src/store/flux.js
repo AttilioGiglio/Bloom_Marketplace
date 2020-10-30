@@ -20,22 +20,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			cart: [],
 
-			order: {
-				order_number: 0,
-				client_id:0,
-				client_name:'',
-				total:0,
-				date:'',
-				products:[
-					{
-						sku_id:0,
-						name:'',
-						description:'',
-						quantity:0,
-						price:0
-					}
-				]
-			},
+			orderlist: [],
+
+			productlistbyorder:[],
 
 			productstock: 0,
 
@@ -52,6 +39,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				email: '',
 				role: null,
 			},
+
+			sales:[],
 
 			information:{
 				business_legal_name: '', 
@@ -260,6 +249,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			createOrder: async (total, client_id) => {
+				console.log(client_id)
 				const response = await fetch(API.POSTORDER + client_id, {
 					method: 'POST',
 					headers: {
@@ -267,39 +257,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify({
 						'total':total,
+						'products':JSON.parse(sessionStorage.getItem('cartlist'))
 				}),
 			});
 				const res =  await response.json();
 				return res
 			},
 
-			getAllOrders: async (total, client_id) => {
-				const response = await fetch(API.POSTORDER + client_id, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						'total':total,
-				}),
-			});
-				const res =  await response.json();
-				return res
+			getAllOrders: async (supplier_id) => {
+				const response = await fetch(API.GETALLORDERBYSUPPLIER + supplier_id);
+				const res = await response.json();
+				if (res) {
+					setStore({orderlist:res});
+					return true;
+				}
+				return false;
 			},
-			
-			// getAllProductByOrder: async (total, client_id) => {
-			// 	const response = await fetch(API.POSTORDER + client_id, {
-			// 		method: 'POST',
-			// 		headers: {
-			// 			'Content-Type': 'application/json',
-			// 		},
-			// 		body: JSON.stringify({
-			// 			'total':total,
-			// 	}),
-			// });
-			// 	const res =  await response.json();
-			// 	return res
-			// },
+
+			getAllProductByOrder:  async (order_id) => {
+				const response = await fetch(API.GETALLORDERBYSUPPLIER + order_id);
+				const res = await response.json();
+				if (res) {
+					setStore({productlistbyorder:res});
+					return true;
+				}
+				return false;
+			},
 
 			// postPutFullInfoSupplier: async (total, client_id) => {
 			// 	const response = await fetch(API.POSTORDER + client_id, {

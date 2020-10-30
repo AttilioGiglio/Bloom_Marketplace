@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './checkout.scss';
 import CheckoutItem from './checkout_item';
 import { BsCreditCard } from 'react-icons/bs';
@@ -8,6 +8,8 @@ import {Context} from '../../store/context'
 
 const CheckoutStepOne = () => {
 
+    const {id} = useParams()
+    console.log(id)
     const [state,setState] = useState(false)
 
     // const { store } = useContext(Context);
@@ -16,6 +18,10 @@ const CheckoutStepOne = () => {
     const { actions } = useContext(Context)
     
     const total = cart.reduce((acc, product) => acc + product.price, 0)
+    
+    // cart.map(item => parameter.push(item.id))
+
+    // let parameter = []
 
     return (
         <div className='d-flex'>
@@ -40,11 +46,17 @@ const CheckoutStepOne = () => {
                     />
                 </table>
                 <div className='total'>
-                    <span>Total: $<div onClick={() => actions.createOrder(total, )}>{total}</div></span>
+                    <span>Total: ${total}</span>
                 </div>
                 <div className='total'>
                     <Link to='/checkout_step_two'>
-                        <button className='btn text-center' style={{ background: '#2D624D', border: 'solid #2D624D', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '20px' }}><span className='mr-1'>Pagar con</span> <BsCreditCard style={{ fontSize: '28px', marginBottom: '2px' }} /></button>
+                        <button className='btn text-center' 
+                        style={{ background: '#2D624D', border: 'solid #2D624D', borderRadius: '5px 5px 5px 5px', 
+                        color: '#fcf9f3', fontSize: '20px' }} 
+                        onClick={() => actions.createOrder(total, id)}>
+                        <span className='mr-1'>Pagar con</span> 
+                        <BsCreditCard style={{ fontSize: '28px', marginBottom: '2px' }} />
+                        </button>
                     </Link>
                 </div>
 

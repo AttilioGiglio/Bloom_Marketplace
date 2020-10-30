@@ -1,9 +1,11 @@
-import React, { useState }/*, {useContext}*/ from 'react';
+import React, { useState, useContext } from 'react';
 import './cart_dropdown.scss';
 import { Link } from 'react-router-dom';
-// import {Context} from '../../store/context';
+import {Context} from '../../store/context';
 
 const CartDropdown = () => {
+
+    const { store } = useContext(Context)
 
     const [state,setState] = useState(false)
 
@@ -45,7 +47,7 @@ const CartDropdown = () => {
                             fontSize: '20px'
                         }}
                         >
-                            <Link to='/checkout_step_one'>
+                            <Link to={`/checkout_step_one/${store.client.id}`}>
                                 Comprar
                             </Link>
                         </button>

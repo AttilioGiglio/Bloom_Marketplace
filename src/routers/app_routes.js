@@ -41,7 +41,7 @@ const AppRouter = () => {
                             <PublicRoutes exact path='/business' component={HomeBusiness} />
                             <PublicRoutes exact path='/login_business' component={LoginBusiness} />
                             <PublicRoutes exact path='/signup_business' component={SignupBusiness} />
-                            <PrivateRoutesClient exact path='/checkout_step_one' component={CheckoutStepOne} />
+                            <PrivateRoutesClient exact path='/checkout_step_one/:id' component={CheckoutStepOne} />
                             <PrivateRoutesClient exact path='/checkout_step_Two' component={CheckoutStepTwo} />
                             <PrivateRoutesClient exact path='/blog_cards' component={Blog} />
                             <PrivateRoutesBusiness exact path='/summary_business' component={Summary} />
