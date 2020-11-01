@@ -9,7 +9,7 @@ import { Context } from '../store/context';
 
 
 
-const SignupClient = () => {
+const SignupClient = ({history}) => {
 
     const { alert, showAlert } = useContext(AlertContext);
 
@@ -34,6 +34,7 @@ const SignupClient = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         // validacion de campos vacios
+
         if (name.trim() === '' || email.trim() === '' || password.trim() === '') {
             showAlert('Todos los campos son obligatorios', 'alert-error')
         }
@@ -52,6 +53,8 @@ const SignupClient = () => {
             password: '',
             confirm: '',
         })
+
+        history.push('/login_client');
     }
 
     return (
@@ -71,7 +74,7 @@ const SignupClient = () => {
                                     onSubmit={onSubmit}
                                 >
                                     <div className="form-group">
-                                        <label>Nombre</label>
+                                        <label htmlFor="name">Nombre</label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -82,7 +85,7 @@ const SignupClient = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Correo</label>
+                                        <label htmlFor="email">Correo</label>
                                         <input
                                             type="email"
                                             className="form-control"
@@ -93,9 +96,9 @@ const SignupClient = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Contraseña</label>
+                                        <label htmlFor="password">Contraseña</label>
                                         <input
-                                            type="text"
+                                            type="password"
                                             className="form-control"
                                             id="password"
                                             name='password'

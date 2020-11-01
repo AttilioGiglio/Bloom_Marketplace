@@ -23,7 +23,7 @@ const Sidebar = () => {
                             <RiFileList2Line className='mb-1' /> Lista de Ordenes</Link>
                         <Link to={'/add_product_business/'+store.supplier.id} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-people lead mr-2"></i>
                             <MdControlPoint className='mb-1' /> Agregar Producto</Link>
-                        <Link to={'/profile_business'} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-people lead mr-2"></i>
+                        <Link to={'/profile_business/'+store.supplier.id} style={{ textDecoration: 'none' }} className="d-block text-light p-3 border-0"><i className="icon ion-md-people lead mr-2"></i>
                             <BiCog /> Configuración</Link>
                     </div>
                 </div>

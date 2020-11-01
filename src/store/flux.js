@@ -46,7 +46,7 @@ const getState = ({ getStore, setStore }) => {
     			year:  0,
     			address: '', 
     			comuna: '',
-    			region: '',
+    			region: ''
 			},
 
 			errors: null,
@@ -251,16 +251,20 @@ const getState = ({ getStore, setStore }) => {
 				return res
 			},
 
-			// postPutFullInfoSupplier: async (total, client_id) => {
-			// 	const response = await fetch(API.POSTORDER + client_id, {
-			// 		method: 'POST',
-			// 		headers: {
-			// 			'Content-Type': 'application/json',
-			// 		},
-			// 		body: JSON.stringify({
-			// 			'total':total,
-			// 	}),
-			// });
+			postPutFullInfoSupplier: async (supplier_id, information) => {
+				let memory = JSON.parse(sessionStorage.getItem('cartlist'));
+				console.log(memory)
+				const response = await fetch(API.POSTPROFILEBUSINESS + supplier_id, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({information}),
+			});
+				const res =  await response.json();
+				return res
+			},
+
 			// 	const res =  await response.json();
 			// 	return res
 			// },

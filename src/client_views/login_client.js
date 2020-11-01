@@ -30,6 +30,7 @@ const LoginClient = ({history}) => {
 
     const loginSubmit = async(e) => {
         e.preventDefault();
+
         if ( email.trim() === '' || password.trim() === '') {
             showAlert('Todos los campos son obligatorios', 'alert-error')
         }
@@ -80,7 +81,7 @@ const LoginClient = ({history}) => {
                                     <div className="form-group">
                                         <label>Contraseña</label>
                                         <input 
-                                        type='text' 
+                                        type='password' 
                                         name='password'
                                         value={password}
                                         className="form-control"

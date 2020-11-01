@@ -87,7 +87,7 @@ const LoginBusiness = ({history}) => {
                                     <div className="form-group">
                                         <label>Contraseña</label>
                                         <input
-                                            type='text'
+                                            type='password'
                                             name='password'
                                             value={password}
                                             className="form-control"

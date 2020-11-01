@@ -7,7 +7,7 @@ export const API = {
     REGISTERBUSINESS: `${urlBackend}/signup_business`,
     LOGINBUSINESS: `${urlBackend}/login_business`, 
     TOKENBUSINESS: `${urlBackend}/token_business`,
-    POSTPROFILEBUSINESS: `${urlBackend}/profile_business`,
+    POSTPROFILEBUSINESS: `${urlBackend}/profile_business/`, //<id>
     GETPROFILEBUSINESS: `${urlBackend}/profile_business/`, //<id>
     POSTPRODUCT: `${urlBackend}/add_product_business/`,
     GETALLPRODUCT: `${urlBackend}/product_cards`,

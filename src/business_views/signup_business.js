@@ -133,7 +133,7 @@ const SignupBusiness = ({ history }) => {
                                     <div className="form-group">
                                         <label for="exampleInputPassword1">Contraseña</label>
                                         <input
-                                            type="text"
+                                            type="password"
                                             className="form-control"
                                             id="password"
                                             name='password'
