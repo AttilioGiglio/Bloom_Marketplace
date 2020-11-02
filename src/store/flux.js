@@ -18,7 +18,14 @@ const getState = ({ getStore, setStore }) => {
 
 			cart: [],
 
-			productstock: 0,
+			summary: {
+				p_month_sales:0,
+				q_month_sales:0,
+				month_stock:0,
+				p_month_average_sales:0
+			},
+
+			last_sales:[],
 
 			client: {
 				id: 0,
@@ -37,19 +44,17 @@ const getState = ({ getStore, setStore }) => {
 			sales:[],
 
 			information:{
+				id:0,
 				business_legal_name: '', 
     			business_id: '',
-    			card_name: 0,
+    			card_name: "",
     			card_number: 0,
-    			cvv: 0,
-    			month: 0,
-    			year:  0,
+				cvv: 0,
+				date:'',
     			address: '', 
     			comuna: '',
     			region: ''
 			},
-
-			errors: null,
 
 			token: null
 
@@ -251,36 +256,37 @@ const getState = ({ getStore, setStore }) => {
 				return res
 			},
 
-			postPutFullInfoSupplier: async (supplier_id, information) => {
-				let memory = JSON.parse(sessionStorage.getItem('cartlist'));
-				console.log(memory)
+			postPutFullInfoSupplier: async(supplier_id, information) => {
 				const response = await fetch(API.POSTPROFILEBUSINESS + supplier_id, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify({information}),
+					body: JSON.stringify(information),
 			});
 				const res =  await response.json();
 				return res
 			},
 
-			// 	const res =  await response.json();
-			// 	return res
-			// },
-			// getSummaryInfoSupplier: async (total, client_id) => {
-			// 	const response = await fetch(API.POSTORDER + client_id, {
-			// 		method: 'POST',
-			// 		headers: {
-			// 			'Content-Type': 'application/json',
-			// 		},
-			// 		body: JSON.stringify({
-			// 			'total':total,
-			// 	}),
-			// });
-			// 	const res =  await response.json();
-			// 	return res
-			// },
+			getAllinfo: async(supplier_id) => {
+				const response = await fetch(API.GETPROFILEBUSINESS + supplier_id);
+				const res = await response.json();
+				setStore({information: res})
+			},
+
+			getSummaryInfoSupplier: async (total, client_id) => {
+				const response = await fetch(API.POSTORDER + client_id, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						'total':total,
+				}),
+			});
+				const res =  await response.json();
+				return res
+			},
 		}
 	}
 
