@@ -71,7 +71,7 @@ const getState = ({ getStore, setStore }) => {
 					.then(data => data);
 			},
 
-			loginClient: async (email, password, role) => {
+			loginClient: async(email, password, role) => {
 				const response = await fetch(API.LOGINCLIENT, {
 					method: 'POST',
 					headers: {
@@ -190,13 +190,15 @@ const getState = ({ getStore, setStore }) => {
 				localStorage.removeItem('authbusiness');
 			},
 
-			createProduct: async (name, quantity, price, description, id_supplier) => {
+			createProduct: async (category, sku_id, name, quantity, price, description, id_supplier) => {
 				const response = await fetch(API.POSTPRODUCT + id_supplier, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({
+						'category':category,
+						'sku_id':sku_id,
 						'name':name,
 						'quantity':quantity,
 						'price':price,
@@ -272,7 +274,7 @@ const getState = ({ getStore, setStore }) => {
 				setStore({information: res})
 			},
 
-			getSummaryInfoSupplier: async (total, client_id) => {
+			getSummaryInfoSupplier: async(total, client_id) => {
 				const response = await fetch(API.POSTORDER + client_id, {
 					method: 'GET',
 					headers: {

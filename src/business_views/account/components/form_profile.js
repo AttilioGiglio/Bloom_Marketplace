@@ -62,7 +62,7 @@ const FormProfile = () => {
 
     return (
         <div>
-            <form onSubmit={onSubmit} className='card p-4' style={{ margin: '50px auto 0', width: '80%', minHeight: '40vh' }}>
+            <form onSubmit={onSubmit} className='card p-4' style={{ margin: '50px auto 0', width: '80%', minHeight: '40vh' }} autoComplete='off'>
                 {alert ? (<div className={`alert ${alert.category}`}>{alert.msg}</div>) : null}
                 <fieldset>
                     <legend>Datos de facturación</legend>
@@ -84,6 +84,7 @@ const FormProfile = () => {
                                 type="text"
                                 className="form-control"
                                 name='business_id'
+                                autoComplete='off'
                                 value={business_id}
                                 onChange={onChange}
                                 required
