@@ -25,7 +25,7 @@ const getState = ({ getStore, setStore }) => {
 				p_month_average_sales:0
 			},
 
-			last_sales:[],
+			daily_sales:[],
 
 			client: {
 				id: 0,
@@ -40,8 +40,6 @@ const getState = ({ getStore, setStore }) => {
 				email: '',
 				role: null,
 			},
-
-			sales:[],
 
 			information:{
 				id:0,
