@@ -21,16 +21,17 @@ const CheckoutItem = ({ cart, setState, state, uid, total }) => {
 
     const onChange = (e, id, index) => {
         const item = cart.find(item => item.id ===id);
-        console.log(item, id, index)
         check[index] = {'id':item.id, 'name':item.name, 'price':item.price, 'quantity_in':item.quantity_in, [e.target.name]:e.target.value}
         setCheck([...check])
-        sessionStorage.setItem('carlist',JSON.stringify(check));
     }
 
+    sessionStorage.setItem('checkout', JSON.stringify(check));
+    
     const onClick = () => {
         actions.createOrder(total, uid)
+        
     }
-    
+    console.log(check)
     return (
         <div className='checkout-item d-block'>
         <tbody>

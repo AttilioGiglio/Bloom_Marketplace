@@ -229,8 +229,6 @@ const getState = ({ getStore, setStore }) => {
 			},
 
 			createOrder: async (total, client_id) => {
-				let memory = JSON.parse(sessionStorage.getItem('cartlist'));
-				console.log(memory)
 				const response = await fetch(API.POSTORDER + client_id, {
 					method: 'POST',
 					headers: {
@@ -238,7 +236,7 @@ const getState = ({ getStore, setStore }) => {
 					},
 					body: JSON.stringify({
 						'total':total,
-						'products':JSON.parse(sessionStorage.getItem('cartlist'))
+						'products':JSON.parse(sessionStorage.getItem('checkout'))
 				}),
 			});
 				const res =  await response.json();

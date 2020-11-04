@@ -23,7 +23,7 @@ const FormAddImage = () => {
 
         actions.uploadImage(formData, id)
 
-        // history.push('/summary_business')
+        history.push('/summary_business')
     }
     return (
                 <form className="form-group " onSubmit={addImage}>
