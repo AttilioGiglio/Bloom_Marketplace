@@ -8,22 +8,22 @@ const FormAddImage = () => {
     
     const { id } = useParams()
 
+    console.log(id)
+
     const [files, setFiles] = useState(null)
 
     const { actions } = useContext(Context)
     
-    const onChange = (e) => {
-        setFiles({[e.target.name]:e.target.files})
-    }
-
     const addImage = (e) => { 
         e.preventDefault();
-        const formData = new FormData()
-        formData.append('product_image', files[0])
+        
+        let formData = new FormData();
+
+        formData.append('product_image', files[0]);
 
         actions.uploadImage(formData, id)
 
-        history.push('/summary_business')
+        // history.push('/summary_business')
     }
     return (
                 <form className="form-group " onSubmit={addImage}>
@@ -32,7 +32,7 @@ const FormAddImage = () => {
                     type="file"
                     className="form-control-file"
                     name='img'
-                    onChange={onChange}
+                    onChange={e => setFiles(e.target.files)}
                     required
                 />
                 <button>Upload</button>

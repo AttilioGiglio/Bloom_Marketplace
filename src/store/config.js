@@ -13,7 +13,7 @@ export const API = {
     UPLOADIMAGE: `${urlBackend}/add_image_business/`, //<id>
     GETALLPRODUCT: `${urlBackend}/product_cards`,
     POSTORDER: `${urlBackend}/checkout_step_one/`, //<id>
-    GETPRODUCTBYID: `${urlBackend}/product_cards/:id`,  //<id>
+    GETPRODUCTBYID: `${urlBackend}/product_cards/`,  //<id>
     GETALLORDERBYSUPPLIER: `${urlBackend}/orders_list_business/`,//<id>
     GETPRODUCTSPERORDER: `${urlBackend}/products_list_business/`, //<id>
     SUMMARYBUSINES: `${urlBackend}/summary_business/` //<id>
