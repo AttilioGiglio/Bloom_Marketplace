@@ -9,7 +9,8 @@ export const API = {
     TOKENBUSINESS: `${urlBackend}/token_business`,
     POSTPROFILEBUSINESS: `${urlBackend}/profile_business/`, //<id>
     GETPROFILEBUSINESS: `${urlBackend}/profile_business/`, //<id>
-    POSTPRODUCT: `${urlBackend}/add_product_business/`,
+    POSTPRODUCT: `${urlBackend}/add_product_business/`, //<id>
+    UPLOADIMAGE: `${urlBackend}/add_image_business/`, //<id>
     GETALLPRODUCT: `${urlBackend}/product_cards`,
     POSTORDER: `${urlBackend}/checkout_step_one/`, //<id>
     GETPRODUCTBYID: `${urlBackend}/product_cards/:id`,  //<id>

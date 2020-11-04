@@ -3,33 +3,32 @@ import { IoMdAddCircleOutline } from 'react-icons/io';
 import { Context } from '../../../store/context';
 import AlertContext from '../../../context/alert/alert_context';
 import '../../../client_views/alert.scss'
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const FormAddProduct = () => {
+    let history = useHistory();
     
-    const {id} = useParams()
+    const { id } = useParams()
 
-    // const { actions } = useContext(Context)
+    const { actions } = useContext(Context)
 
     const { alert, showAlert } = useContext(AlertContext);
 
     const [product, setProduct] = useState({
-        sku_id:'',
+        sku_id: '',
         name: '',
         quantity_in: '',
         price: '',
         description: '',
-        category:'',
-        img: '',
+        category: '',
     })
-
-    const { sku_id, name, quantity_in, price, description, category, img } = product
+    
+    const { sku_id, name, quantity_in, price, description, category } = product
 
     const onChange = (e) => {
         let value = e.target.value;
-        (e.target.name === 'quantity_in' || e.target.name === 'price' )&&(value = parseInt(value));
-        (e.target.name === 'img')&&(value = e.target.files) 
+        (e.target.name === 'quantity_in' || e.target.name === 'price') && (value = parseInt(value));
         setProduct({ ...product, [e.target.name]: value })
     }
 
@@ -44,26 +43,25 @@ const FormAddProduct = () => {
             showAlert('La descripción debe ser al menos de 30 caracteres', 'alert-error')
             return;
         }
-        
-        console.log(img)
 
         // pasarlo al action del context
-        // actions.createProduct(sku_id, name, quantity_in, price, description, category, id)
+        actions.createProduct(sku_id, name, quantity_in, price, description, category, id)
 
         setProduct({
-            sku_id:'',
+            sku_id: '',
             name: '',
             quantity_in: '',
             price: '',
             description: '',
-            category:'',
-            img: '',
+            category: '',
         })
+
+        history.push('/add_image_business/'+id)
     }
 
     const onClick = () => {
         const id = uuidv4()
-        setProduct({ ...product, ['sku_id']:id})
+        setProduct({ ...product, ['sku_id']: id })
     }
 
     return (
@@ -72,9 +70,9 @@ const FormAddProduct = () => {
             style={{ margin: '50px auto 0', width: '80%', minHeight: '45vh' }}
             onSubmit={addProduct}
         >
-        {alert ? (<div className={`alert ${alert.category}`}>{alert.msg}</div>) : null}
+            {alert ? (<div className={`alert ${alert.category}`}>{alert.msg}</div>) : null}
             <div className="form-row">
-            
+
                 <div className="col-md-3 mb-3">
                     <label>Categoria</label>
                     <select
@@ -84,7 +82,7 @@ const FormAddProduct = () => {
                         value={category}
                         onChange={onChange}
                     >
-                        <option  defaultValue={'DEFAULT'}>Selecciona...</option>
+                        <option defaultValue={'DEFAULT'}>Selecciona...</option>
                         <option value="indoor">Indoor</option>
                         <option value="outdoor">Outdoor</option>
                     </select>
@@ -100,7 +98,7 @@ const FormAddProduct = () => {
                         onChange={onChange}
                     />
                 </div>
-              
+
                 <div className="col-md-3 mb-3">
                     <label>Cantidad</label>
                     <input
@@ -125,8 +123,8 @@ const FormAddProduct = () => {
                 </div>
             </div>
             <div className="col-md-5 p-0 mb-3">
-            <label>SKU</label>
-            <div className='d-flex'>
+                <label>SKU</label>
+                <div className='d-flex'>
                     <input
                         type="text"
                         className="form-control"
@@ -135,21 +133,11 @@ const FormAddProduct = () => {
                         value={sku_id}
                         onChange={onChange}
                     />
-            <button type="button" className='ml-3' onClick={onClick} style={{ width:'180px', background: '#479A79', border: 'solid 1px #479A79', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '14px' }} >Generar SKU AT</button>
-                    </div>
+                    <button type="button" className='ml-3' onClick={onClick} style={{ width: '180px', background: '#479A79', border: 'solid 1px #479A79', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '14px' }} >Generar SKU AT</button>
                 </div>
-                <div className="form-group ">
-                <label>Imagen de tu producto</label>
-                <input
-                    type="file"
-                    className="form-control-file"
-                    name='img'
-                    value={img}
-                    onChange={onChange}
-                    required
-                />
             </div>
-            <div className="form-group"> 
+       
+            <div className="form-group">
                 <label>Decripción</label>
                 <textarea
                     className="form-control"
@@ -159,7 +147,7 @@ const FormAddProduct = () => {
                     value={description}
                     onChange={onChange}
                 ></textarea>
-            </div>         
+            </div>
             <button type="submit" className="btn mt-3" style={{ width: '15%', background: '#479A79', border: 'solid 1px #479A79', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '20px' }} >Agregar <IoMdAddCircleOutline style={{ color: '#fcf9f3', fontSize: '20px' }} /></button>
         </form>
     )

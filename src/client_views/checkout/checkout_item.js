@@ -10,7 +10,7 @@ const CheckoutItem = ({ cart, setState, state, uid, total }) => {
 
     const [check, setCheck] = useState([]);
 
-    const {quantity_out} = check;
+    // const {quantity_out} = check;
     
     const deleteItem = (item) => {
         console.log(item)
@@ -19,18 +19,15 @@ const CheckoutItem = ({ cart, setState, state, uid, total }) => {
         sessionStorage.setItem('cartlist', JSON.stringify(checkout))
     }
 
-    const onChange = (e, id) => {
+    const onChange = (e, id, index) => {
         const item = cart.find(item => item.id ===id);
-        setCheck([...check, {'id':item.id, 'name':item.name, 'price':item.price, 'quantity_in':item.quantity_in, [e.target.name]:e.target.value}])
-        // var a = JSON.parse(cart)
-        // a.map(item => item['quantity_out']=e.target.value)
-        // localStorage.setItem('carlist',JSON.stringify( e.target.value));
+        console.log(item, id, index)
+        check[index] = {'id':item.id, 'name':item.name, 'price':item.price, 'quantity_in':item.quantity_in, [e.target.name]:e.target.value}
+        setCheck([...check])
+        sessionStorage.setItem('carlist',JSON.stringify(check));
     }
-    console.log(quantity_out)
+
     const onClick = () => {
-        // const newCart = cart.map(item => item['quantity_out'] = quantity_out)
-        // sessionStorage.setItem('cartlist', JSON.stringify(newCart))
-        console.log(quantity_out)
         actions.createOrder(total, uid)
     }
     
@@ -41,7 +38,7 @@ const CheckoutItem = ({ cart, setState, state, uid, total }) => {
                 cart.length === 0
                     ? <tr style={{ width: '100%', paddingTop: '15px' }}><th>No hay tareas...</th></tr>
                     :
-                    cart.map((item) => (
+                    cart.map((item, index) => (
                         <tr>
                             <th className='image-container'><img style={{width:'50%'}} src={'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG'} alt="card cap" /></th>
                             <th className='name'>{item.name}</th>
@@ -50,8 +47,7 @@ const CheckoutItem = ({ cart, setState, state, uid, total }) => {
                             type="number"
                             min="1" max="100"
                             name='quantity_out'
-                            value={quantity_out}
-                            onChange={(e) => onChange(e, item.id)}
+                            onChange={(e) => onChange(e, item.id, index)}
                             required
                     />
                     </th>

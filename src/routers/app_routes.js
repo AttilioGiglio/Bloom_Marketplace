@@ -23,8 +23,7 @@ import ChatApp from '../chat/chat_app';
 import PublicRoutes from './public_routes';
 import PrivateRoutesBusiness from './private_business_routes';
 import ChatProvider from '../chat/context/chat_provider';
-
-
+import FormAddImage from '../business_views/account/components/form_add_image'
 
 const AppRouter = () => {
     
@@ -48,6 +47,7 @@ const AppRouter = () => {
                             <PrivateRoutesClient exact path='/blog_cards' component={Blog} />
                             <PrivateRoutesBusiness exact path='/summary_business' component={Summary} />
                             <PrivateRoutesBusiness exact path='/add_product_business/:id' component={AddProduct} />
+                            <PrivateRoutesBusiness exact path='/add_image_business/:id' component={FormAddImage} />
                             <PrivateRoutesBusiness exact path='/orders_list_business/:id' component={OrdersList} />
                             <PrivateRoutesBusiness exact path='/products_list_business/:id' component={ProductsList} />
                             <PrivateRoutesBusiness exact path='/profile_business/:id' component={Profile} />

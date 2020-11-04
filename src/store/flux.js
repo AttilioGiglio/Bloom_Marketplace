@@ -201,6 +201,15 @@ const getState = ({ getStore, setStore }) => {
 				const res =  await response.json();
 				return res
 			},
+
+			uploadImage:  async (formData, id_supplier) => {
+				const response = await fetch(API.UPLOADIMAGE+ id_supplier, {
+				  method: 'POST',
+				  body: formData,
+				});
+				const res = response.json();
+				return res;
+			  },
 			
 			getAllProducts: async () => {
 				const response = await fetch(API.GETALLPRODUCT);
