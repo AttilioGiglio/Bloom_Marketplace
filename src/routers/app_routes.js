@@ -22,13 +22,14 @@ import PrivateRoutesClient from './private_client_routes';
 import ChatApp from '../chat/chat_app';
 import PublicRoutes from './public_routes';
 import PrivateRoutesBusiness from './private_business_routes';
+import ChatProvider from '../chat/context/chat_provider';
 
 
 
 const AppRouter = () => {
     
     return (
-
+                <ChatProvider>
                 <AlertProvider>
                     <Router>
                         <Switch>
@@ -53,6 +54,7 @@ const AppRouter = () => {
                         </Switch>
                     </Router>
                 </AlertProvider>
+                </ChatProvider>
 
     )
 }

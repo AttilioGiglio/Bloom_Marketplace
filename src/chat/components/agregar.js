@@ -19,7 +19,8 @@ const Agregar = () => {
 
     return (
         <form 
-            className='fixed-bottom input-group p-3 bg-dark'
+            className='fixed-bottom input-group p-3'
+            style={{background:'#2D624D'}}
             onSubmit={agregar}
         >
             <input 
@@ -30,7 +31,7 @@ const Agregar = () => {
             />
             <div className='input-group-append'>
                 <button
-                    className='btn btn-primary'
+                    style={{background:'#6c63ff', border:'solid #6c63ff', borderRadius: '5px 5px 5px 5px', color:'#fcf9f3', fontSize:'15px' }}
                     type='submit'
                 >
                     Enviar

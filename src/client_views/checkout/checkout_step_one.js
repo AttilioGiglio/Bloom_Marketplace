@@ -1,10 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './checkout.scss';
 import CheckoutItem from './checkout_item';
-import { BsCreditCard } from 'react-icons/bs';
 import { RiPlantLine } from 'react-icons/ri';
-import {Context} from '../../store/context'
 
 const CheckoutStepOne = () => {
 
@@ -13,10 +11,10 @@ const CheckoutStepOne = () => {
     const [state,setState] = useState(false)
 
     let cart = JSON.parse(sessionStorage.getItem('cartlist'))
-
-    const { actions } = useContext(Context)
     
     const total = cart.reduce((acc, product) => acc + product.price, 0)
+
+    
 
     return (
         <div className='d-flex'>
@@ -38,23 +36,10 @@ const CheckoutStepOne = () => {
                         cart={cart}
                         state={state}
                         setState={setState}
+                        uid={id}
+                        total={total}
                     />
                 </table>
-                <div className='total'>
-                    <span>Total: ${total}</span>
-                </div>
-                <div className='total'>
-                    <Link to='/checkout_step_two'>
-                        <button className='btn text-center' 
-                        style={{ background: '#2D624D', border: 'solid #2D624D', borderRadius: '5px 5px 5px 5px', 
-                        color: '#fcf9f3', fontSize: '20px' }} 
-                        onClick={() => actions.createOrder(total, id)}>
-                        <span className='mr-1'>Pagar con</span> 
-                        <BsCreditCard style={{ fontSize: '28px', marginBottom: '2px' }} />
-                        </button>
-                    </Link>
-                </div>
-
             </div>
         </div>
     )

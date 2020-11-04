@@ -26,8 +26,7 @@ const FormProfile = () => {
         region: ''
     })
 
-    const { /*username, email,*/ business_legal_name, business_id,
-        card_name, card_number, cvv, date, address, comuna, region } = formProfile;
+    const { business_legal_name, business_id, card_name, card_number, cvv, date, address, comuna, region } = formProfile;
 
     const onChange = (e) => {
         let value = e.target.value;

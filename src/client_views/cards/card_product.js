@@ -1,11 +1,10 @@
-import React, {useContext, useState} from 'react';
-import { Link } from 'react-router-dom';
-// import ProductContext from '../../context/products/product_context';
+import React, {useContext} from 'react';
 import {Context} from '../../store/context'
 
 const CardProduct = ({product}) => {
-    // const [counter, setcounter] = useState(1)
+
     const {actions} = useContext(Context)
+    
     return (
         <div className='col-3 d-flex justify-content-center my-4'>
             <div className="card" style={{ width: '18rem' }}>
@@ -23,3 +22,24 @@ const CardProduct = ({product}) => {
 }
 
 export default CardProduct
+
+// const handleClick = (e, product) => {
+//     setState(({ quantity_in }) => {[e.target.name]: e.target.value + 1})
+//     console.log(state)
+//     actions.updateProductCart(product.id, product.img, product.name, product.price, product.quantity_in, quantity_out);
+// }
+
+// return (
+//     <div className='col-3 d-flex justify-content-center my-4'>
+//         <div className="card" style={{ width: '18rem' }}>
+
+//         <img className="card-img-top" src={'https://www.ikea.com/gb/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_PE686835_S5.JPG'} alt="card cap" />
+
+//                <div className="card-body">
+//                     <h5 className="card-title">{product.name}</h5>
+//                     <p className='card-text'>${product.price}</p>
+//                     <button onClick={(e) => handleClick(e, product)} name={quantity_out} value={quantity_out} className="btn btn-primary">Agregar al Carrito</button>
+//                 </div>
+//             </div>
+//     </div>
+// )

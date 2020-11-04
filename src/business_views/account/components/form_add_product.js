@@ -9,34 +9,34 @@ import { v4 as uuidv4 } from 'uuid';
 const FormAddProduct = () => {
     
     const {id} = useParams()
-    console.log(id)
-    const { store, actions } = useContext(Context)
+
+    // const { actions } = useContext(Context)
 
     const { alert, showAlert } = useContext(AlertContext);
 
     const [product, setProduct] = useState({
         sku_id:'',
         name: '',
-        quantity: '',
+        quantity_in: '',
         price: '',
         description: '',
         category:'',
         img: '',
     })
 
-    const { sku_id, name, quantity, price, description, category, img } = product
+    const { sku_id, name, quantity_in, price, description, category, img } = product
 
     const onChange = (e) => {
         let value = e.target.value;
+        (e.target.name === 'quantity_in' || e.target.name === 'price' )&&(value = parseInt(value));
+        (e.target.name === 'img')&&(value = e.target.files) 
         setProduct({ ...product, [e.target.name]: value })
     }
-
-    // const names = store.productlist.map(i => i.name == name ? i.name : name)
 
     const addProduct = (e) => {
         e.preventDefault();
         // validacion de campos vacios
-        if (sku_id.trim() === '' || name.trim() === '' || quantity.trim() === '' || price.trim() === '' || description.trim() === '' || category.trim() === '') {
+        if (sku_id.trim() === '' || name.trim() === '' || description.trim() === '' || category.trim() === '') {
             showAlert('Todos los campos son obligatorios', 'alert-error')
         }
         // validacion password min 6 caracteres
@@ -44,14 +44,16 @@ const FormAddProduct = () => {
             showAlert('La descripción debe ser al menos de 30 caracteres', 'alert-error')
             return;
         }
+        
+        console.log(img)
 
         // pasarlo al action del context
-        actions.createProduct(sku_id, name, quantity, price, description, category, id)
+        // actions.createProduct(sku_id, name, quantity_in, price, description, category, id)
 
         setProduct({
             sku_id:'',
             name: '',
-            quantity: '',
+            quantity_in: '',
             price: '',
             description: '',
             category:'',
@@ -106,8 +108,8 @@ const FormAddProduct = () => {
                         className="form-control"
                         min="1" max="100"
                         required
-                        name='quantity'
-                        value={quantity}
+                        name='quantity_in'
+                        value={quantity_in}
                         onChange={onChange}
                     />
                 </div>
@@ -136,8 +138,7 @@ const FormAddProduct = () => {
             <button type="button" className='ml-3' onClick={onClick} style={{ width:'180px', background: '#479A79', border: 'solid 1px #479A79', borderRadius: '5px 5px 5px 5px', color: '#fcf9f3', fontSize: '14px' }} >Generar SKU AT</button>
                     </div>
                 </div>
-            <div className="form-group">
-            <div className="form-group ">
+                <div className="form-group ">
                 <label>Imagen de tu producto</label>
                 <input
                     type="file"
@@ -148,6 +149,7 @@ const FormAddProduct = () => {
                     required
                 />
             </div>
+            <div className="form-group"> 
                 <label>Decripción</label>
                 <textarea
                     className="form-control"

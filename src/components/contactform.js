@@ -49,12 +49,20 @@ const ContactForm = () => {
     onChange = {(e) => setEmail(e.target.value)}
     />
   </div>
+  <div className="form-group">
+  <SiMinutemailer/> <label>Mensaje:</label>
+    <textarea 
+    value={message}
+    type="text" 
+    className="form-control" 
+    placeholder="Ingresa tu mensaje" 
+    onChange = {(e) => setMessage(e.target.value)}
+    />
+  </div>
   <button 
   type="submit" 
-  value={message}
   className="btn btn-primary" 
   style={{background:"#fcf9f3", borderColor: '#224229', color:'#224229'}}
-  onChange = {(e) => setMessage(e.target.value)}
   >Enviar</button>
 </form>
 

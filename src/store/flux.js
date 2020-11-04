@@ -5,16 +5,7 @@ const getState = ({ getStore, setStore }) => {
 
 		store: {
 
-			product: {
-				id:'',
-				name: '',
-				sku_id:'',
-				description: '',
-				quantity: '',
-				price: '',
-				date:''
-				// img: '',
-			},
+			productlist: [],
 
 			cart: [],
 
@@ -137,10 +128,11 @@ const getState = ({ getStore, setStore }) => {
 					.then(data => data);
 			},
 
-			loginSupplier: async (email, password, role) => {
+			loginSupplier: async(email, password, role) => {
 				const response = await fetch(API.LOGINBUSINESS, {
 					method: 'POST',
 					headers: {
+						'Accept': 'application/json',
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify(
@@ -190,7 +182,7 @@ const getState = ({ getStore, setStore }) => {
 				localStorage.removeItem('authbusiness');
 			},
 
-			createProduct: async (category, sku_id, name, quantity, price, description, id_supplier) => {
+			createProduct: async (sku_id, name, quantity_in, price, description, category, id_supplier) => {
 				const response = await fetch(API.POSTPRODUCT + id_supplier, {
 					method: 'POST',
 					headers: {
@@ -200,7 +192,7 @@ const getState = ({ getStore, setStore }) => {
 						'category':category,
 						'sku_id':sku_id,
 						'name':name,
-						'quantity':quantity,
+						'quantity_in':quantity_in,
 						'price':price,
 						'description':description,
 					}),
@@ -222,7 +214,7 @@ const getState = ({ getStore, setStore }) => {
 
 			updateProductCart: (product) => {
 				const store = getStore();
-				const newitemCart = { id: product.id, img: product.img, name: product.name, price: product.price }
+				const newitemCart = { id: product.id, /*img: product.img,*/ name: product.name, price: product.price, quantity_in: product.quantity_in, quantity_out:product.quantity_out }
 				setStore([...store.cart, store.cart.push(newitemCart)])
 				sessionStorage.setItem("cartlist", JSON.stringify(store.cart))
 			},

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {db, auth, provider} from '../../assets/other/firebase'
 
 export const ChatContext = React.createContext()
@@ -6,12 +6,12 @@ export const ChatContext = React.createContext()
 const ChatProvider = (props) => {
 
     const dataUsuario = {uid: null, email: null, estado: null}
-    const [usuario, setUsuario] = React.useState(dataUsuario)
-    const [mensajes, setMensajes] = React.useState([])
+    const [usuario, setUsuario] = useState(dataUsuario)
+    const [mensajes, setMensajes] = useState([])
 
     React.useEffect(() => {
         detectarUsuario()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
     }, [])
 
     const detectarUsuario = () => {

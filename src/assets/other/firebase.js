@@ -1,9 +1,8 @@
 import firebase from 'firebase/app';
-import 'firebase/firestore';   // for cloud firestore
+import 'firebase/firestore';   // cloud firestore
 import 'firebase/auth'
-// Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseApp = firebase.initializeApp({
+// web app's Firebase configuration
+ const firebaseConfig = {
     apiKey: "AIzaSyBq1KhjYMgGhrjQnw7hjMyeEiZcEKJD-vY",
     authDomain: "bloom-418c1.firebaseapp.com",
     databaseURL: "https://bloom-418c1.firebaseio.com",
@@ -12,9 +11,10 @@ import 'firebase/auth'
     messagingSenderId: "1033981654683",
     appId: "1:1033981654683:web:6c727b155c68690c29783e",
     measurementId: "G-VH8GNG4R4W"
-  });
+  };
   // Initialize Firebase
-  const db = firebaseApp.firestore();
+  firebase.initializeApp(firebaseConfig)
+  const db = firebase.firestore();
   const auth = firebase.auth()
   const provider = new firebase.auth.GoogleAuthProvider()
   export {db,auth,provider};
