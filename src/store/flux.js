@@ -273,16 +273,8 @@ const getState = ({ getStore, setStore }) => {
 				setStore({information: res})
 			},
 
-			getSummaryInfoSupplier: async(total, client_id) => {
-				const response = await fetch(API.POSTORDER + client_id, {
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						'total':total,
-				}),
-			});
+			getSummaryInfoSupplier: async(supplier_id) => {
+				const response = await fetch(API.SUMMARYBUSINES + supplier_id);
 				const res =  await response.json();
 				return res
 			},

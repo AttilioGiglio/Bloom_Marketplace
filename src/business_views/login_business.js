@@ -1,5 +1,5 @@
 import React, { useContext, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../assets/images/undraw_Login_re_4vu2.svg';
 import { RiUserAddLine } from 'react-icons/ri';
 import { RiPlantLine } from 'react-icons/ri';
@@ -43,7 +43,7 @@ const LoginBusiness = ({history}) => {
         
         if (success && store.token) {
             localStorage.setItem('authbusiness',store.token);
-            history.replace("/summary_business")
+            history.replace("/summary_business/"+store.supplier.id)
         } else {
             showAlert('No se encuentra registrado','alert-error')
         }
